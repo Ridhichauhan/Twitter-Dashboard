@@ -6,13 +6,12 @@ import {
   Col,
   Form,
   InputGroup,
-  Nav,
   Tab,
 } from "react-bootstrap";
-import desktoplogo from "../assets/images/brand-logos/desktop-logo.png";
-import desktopdarklogo from "../assets/images/brand-logos/desktop-dark.png";
-import firebase from "../assets/images/brand-logos/1.png";
-import react from "../assets/images/brand-logos/2.png";
+// import desktoplogo from "../assets/images/brand-logos/desktop-logo.png";
+// import desktopdarklogo from "../assets/images/brand-logos/desktop-dark.png";
+// import firebase from "../assets/images/brand-logos/1.png";
+// import react from "../assets/images/brand-logos/2.png";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "./firebaseapi";
 import { connect } from "react-redux";
@@ -22,7 +21,7 @@ import { ThemeChanger } from "../redux/action";
 interface LoginProps {}
 
 const Login: FC<LoginProps> = ({ ThemeChanger }: any) => {
-  const [passwordshow1, setpasswordshow1] = useState(false);
+  // const [passwordshow1, setpasswordshow1] = useState(false);
   const [err, setError] = useState("");
   const [data, setData] = useState({
     email: "adminreact@gmail.com",
@@ -35,7 +34,7 @@ const Login: FC<LoginProps> = ({ ThemeChanger }: any) => {
   };
   const navigate = useNavigate();
   const routeChange = () => {
-    const path = `${import.meta.env.BASE_URL}dashboards/crm/`;
+    const path = `${import.meta.env.BASE_URL}tweets/tweets`;
     navigate(path);
   };
 
@@ -75,42 +74,26 @@ const Login: FC<LoginProps> = ({ ThemeChanger }: any) => {
           <Col xxl={4} xl={5} lg={5} md={6} sm={8} className="col-12">
             <div className="my-5 d-flex justify-content-center">
               <Link to={`${import.meta.env.BASE_URL}dashboards/crm/`}>
-                <img src={desktoplogo} alt="logo" className="desktop-logo" />
+                {/* <img src={desktoplogo} alt="logo" className="desktop-logo" />
                 <img
                   src={desktopdarklogo}
                   alt="logo"
                   className="desktop-dark"
-                />
+                /> */}
               </Link>
             </div>
             <Tab.Container id="left-tabs-example" defaultActiveKey="react">
               <Card>
-                <Nav
-                  variant="pills"
-                  className="justify-content-center authentication-tabs"
-                >
-                  <Nav.Item>
-                    <Nav.Link eventKey="react">
-                      <img src={react} alt="logo2" />
-                    </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="firebase">
-                      {" "}
-                      <img src={firebase} alt="logo1" />
-                    </Nav.Link>
-                  </Nav.Item>
-                </Nav>
                 <Tab.Content>
                   <Tab.Pane eventKey="react" className="border-0 pb-2">
                     <div className="p-4">
-                      <p className="h5 fw-semibold mb-2 text-center">Sign In</p>
+                      {/* <p className="h5 fw-semibold mb-2 text-center">Sign In</p>
                       <p className="mb-4 text-muted op-7 fw-normal text-center">
                         Welcome back Jhon !
-                      </p>
+                      </p> */}
                       <div className="row gy-3">
                         {err && <Alert variant="danger">{err}</Alert>}
-                        <Col xl={12}>
+                        {/* <Col xl={12}>
                           <Form.Label
                             htmlFor="signin-username"
                             className="form-label text-default"
@@ -127,8 +110,8 @@ const Login: FC<LoginProps> = ({ ThemeChanger }: any) => {
                             onChange={changeHandler}
                             required
                           />
-                        </Col>
-                        <Col xl={12} className="mb-2">
+                        </Col> */}
+                        {/* <Col xl={12} className="mb-2">
                           <Form.Label
                             htmlFor="signin-password"
                             className="form-label text-default d-block"
@@ -182,19 +165,17 @@ const Login: FC<LoginProps> = ({ ThemeChanger }: any) => {
                               </Form.Label>
                             </div>
                           </div>
-                        </Col>
+                        </Col> */}
                         <Col xl={12} className="d-grid mt-2">
-                          <Button
-                            variant="primary"
+                          <button
                             onClick={Login1}
-                            size="lg"
-                            className="btn"
+                            className="btn bgColor text-white"
                           >
-                            Sign In
-                          </Button>
+                           Click Here for Login
+                          </button>
                         </Col>
                       </div>
-                      <div className="text-center">
+                      {/* <div className="text-center">
                         <p className="fs-12 text-muted mt-3">
                           Dont have an account?{" "}
                           <Link
@@ -220,7 +201,7 @@ const Login: FC<LoginProps> = ({ ThemeChanger }: any) => {
                         <Button variant="light" className="btn btn-icon">
                           <i className="ri-twitter-line fw-bold text-dark op-7"></i>
                         </Button>
-                      </div>
+                      </div> */}
                     </div>
                   </Tab.Pane>
                   <Tab.Pane eventKey="firebase" className="border-0 pb-2">

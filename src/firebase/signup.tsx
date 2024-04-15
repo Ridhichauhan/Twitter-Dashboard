@@ -1,7 +1,7 @@
 import { FC, Fragment, useState, useEffect } from "react";
 import { Alert, Button, Card, Col, Form, InputGroup } from "react-bootstrap";
-import desktoplogo from "../assets/images/brand-logos/desktop-logo.png";
-import desktopdarklogo from "../assets/images/brand-logos/desktop-dark.png";
+// import desktoplogo from "../assets/images/brand-logos/desktop-logo.png";
+// import desktopdarklogo from "../assets/images/brand-logos/desktop-dark.png";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "./firebaseapi";
 import { connect } from "react-redux";
@@ -53,12 +53,12 @@ const Signup: FC<SignupProps> = ({ ThemeChanger }: any) => {
           <Col xxl={4} xl={5} lg={5} md={6} sm={8} className="col-12">
             <div className="my-5 d-flex justify-content-center">
               <Link to={`${import.meta.env.BASE_URL}dashboards/crm/`}>
-                <img src={desktoplogo} alt="logo" className="desktop-logo" />
+                {/* <img src={desktoplogo} alt="logo" className="desktop-logo" />
                 <img
                   src={desktopdarklogo}
                   alt="logo"
                   className="desktop-dark"
-                />
+                /> */}
               </Link>
             </div>
             <Card className="custom-card">
