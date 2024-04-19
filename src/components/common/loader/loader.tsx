@@ -1,14 +1,15 @@
 // import { useEffect } from 'react';
-import loader from '../../../assets/images/media/loader.svg';
+/*eslint linebreak-style: ["error", "windows"]*/
+import spinner from "../../../assets/images/media/spinner.svg";
 const Loader = () => {
-    // useEffect(() => {
+    // useEffect(() =
     //   console.log("Working");
       
     // });
     
     return (
-        <div id="loader" className='' style={{color:"#238ae6"}}>
-            <img src={loader} className="" style={{color:"#238ae6"}} alt="Loader" />
+        <div id="loader" className='' >
+            <img src={spinner} className="h-25 w-25"  alt="Loader" />
         </div>
     );
 };

@@ -1,3 +1,4 @@
+/*eslint linebreak-style: ["error", "windows"]*/
 import { FC, Fragment, useEffect, useState } from "react";
 import { Card, Col, InputGroup, Pagination, Row, Table } from "react-bootstrap";
 import DatePicker from "react-datepicker";
@@ -11,7 +12,6 @@ const Jobpost: FC<JobpostProps> = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [startDate1, setStartDate1] = useState(new Date());
   const [tweets, setTweets] = useState<any[]>([]);
-  console.log("object,", tweets)
   const [loader, setLoader] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const authToken =

@@ -1,3 +1,4 @@
+/*eslint linebreak-style: ["error", "windows"]*/
 import axios from "axios";
 import { FC, Fragment, useEffect, useState } from "react";
 import { Card, Col, Row, Table } from "react-bootstrap";

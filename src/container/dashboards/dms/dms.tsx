@@ -1,3 +1,4 @@
+/*eslint linebreak-style: ["error", "windows"]*/
 import { Fragment, useEffect, useState } from "react";
 import { Card, Col, InputGroup,Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
@@ -40,6 +41,7 @@ const Jobs = () => {
           },
         }
       );
+      console.log(response);
       setTweets(response?.data?.STATUS_RESPONSE);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -71,7 +73,7 @@ const Jobs = () => {
                       <DatePicker
                         selected={startDate}
                         onChange={handleDateChange}
-                        dateFormat="yyyy/MM/dd h:mm aa"
+                        dateFormat="yyyy/MM/dd"
                       />
                     </InputGroup>
                   </div>
@@ -84,7 +86,7 @@ const Jobs = () => {
                       <DatePicker
                         selected={startDate1}
                         onChange={handleDateChange1}
-                        dateFormat="yyyy/MM/dd h:mm aa"
+                        dateFormat="yyyy/MM/dd"
                       />
                     </InputGroup>
                   </div>
@@ -122,7 +124,7 @@ const Jobs = () => {
                 </Card.Header>
                 <Card.Body>
                   <p className="fw-semibold mb-1 fs-16">
-                    {tweets?.totalRecivedDms}
+                  {(tweets as any)?.totalRecivedDms}
                   </p>
                   <p className="text-muted mb-3">Time Stamp Data</p>
                 </Card.Body>
@@ -143,7 +145,7 @@ const Jobs = () => {
                 </Card.Header>
                 <Card.Body>
                   <p className="fw-semibold mb-1 fs-16">
-                    {tweets?.totalAckDms}
+                    {(tweets as any)?.totalAckDms}
                   </p>
                   <p className="text-muted mb-3">Time Stamp Data</p>
                 </Card.Body>
@@ -155,7 +157,7 @@ const Jobs = () => {
                   <div className="me-2"></div>
                   <div className="flex-fill">
                     <h1 className="fw-semibold fs-14 d-block text-truncate">
-                      Total DMS Recived
+                      Total UnAcknowledge Recived
                     </h1>
                   </div>
                   <div>
@@ -164,7 +166,7 @@ const Jobs = () => {
                 </Card.Header>
                 <Card.Body>
                   <p className="fw-semibold mb-1 fs-16">
-                    {tweets?.totalUnAckDms}
+                    {(tweets as any)?.totalUnAckDms}
                   </p>
                   <p className="text-muted mb-3">Time Stamp Data</p>
                 </Card.Body>
@@ -185,7 +187,7 @@ const Jobs = () => {
                 </Card.Header>
                 <Card.Body>
                   <p className="fw-semibold mb-1 fs-16">
-                    {tweets?.totalSentDms}
+                    {(tweets as any)?.totalSentDms}
                   </p>
                   <p className="text-muted mb-3">Time Stamp Data</p>
                 </Card.Body>
@@ -206,7 +208,7 @@ const Jobs = () => {
                 </Card.Header>
                 <Card.Body>
                   <p className="fw-semibold mb-1 fs-16">
-                    {tweets?.totalUnSentDms}
+                    {(tweets as any)?.totalUnSentDms}
                   </p>
                   <p className="text-muted mb-3">Time Stamp Data</p>
                 </Card.Body>

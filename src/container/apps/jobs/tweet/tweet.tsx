@@ -1,3 +1,4 @@
+/*eslint linebreak-style: ["error", "windows"]*/
 import { FC, Fragment, useEffect, useState } from "react";
 import { Card, Col, InputGroup, Pagination, Row, Table } from "react-bootstrap";
 import DatePicker from "react-datepicker";
@@ -9,7 +10,6 @@ interface TweetProps {}
 
 const Tweet: FC<TweetProps> = () => {
   const [startDate, setStartDate] = useState(new Date());
-  console.log(startDate.toISOString())
   const [startDate1, setStartDate1] = useState(new Date());
   const [tweets, setTweets] = useState<any[]>([]);
   console.log("data", tweets);

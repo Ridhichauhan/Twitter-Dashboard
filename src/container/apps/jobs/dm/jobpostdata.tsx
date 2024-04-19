@@ -1,4 +1,4 @@
-
+/*eslint linebreak-style: ["error", "windows"]*/
 export const Data1=[
  {value:'Development', label:'Development'},
  {value:'Marketing', label:'Marketing'},
