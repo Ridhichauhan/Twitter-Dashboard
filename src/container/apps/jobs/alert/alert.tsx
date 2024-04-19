@@ -1,10 +1,33 @@
-import { FC, Fragment } from "react";
+import axios from "axios";
+import { FC, Fragment, useEffect, useState } from "react";
 import { Card, Col, Row, Table } from "react-bootstrap";
-import { Tweetdata1 } from "../tweet/joblistdata";
 
-interface JobdetailsProps {}
+interface AlertProps {
+  APIs:string;
+  dataBaseStatus:string;
+  server:string;
+  tweetsReceived: string;
+}
 
-const Jobdetails: FC<JobdetailsProps> = () => {
+const Alert: FC<AlertProps> = () => {
+  const [tweetsData, setTweetsData] = useState<any>(null);
+  const authToken =
+    "eyJhbGciOiJIUzI1NiJ9.MTU1MjI1ODE1NTA4MTQ1MzU2OA.lTui2zIUqqskGj5K4keIId0f-SRCQpUuH7zapOJ0_GI";
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    try {
+      const res = await axios.get("https://loudfolder.com/getAlertStatus", {
+        headers: {
+          Authorization: authToken,
+        },
+      });
+      setTweetsData(res?.data?.data);
+    } catch (error) {
+      console.error("Error fetching Data", error);
+    }
+  };
   return (
     <Fragment>
       <Col>
@@ -22,6 +45,7 @@ const Jobdetails: FC<JobdetailsProps> = () => {
                   <button
                     className="btn btn-sm text-nowrap  bgColor text-white ms-2"
                     type="submit"
+                    onClick={fetchData}
                   >
                     Submit
                   </button>
@@ -32,37 +56,59 @@ const Jobdetails: FC<JobdetailsProps> = () => {
           <Card>
             <Card.Body>
               <div className="table-responsive">
-                <Table bordered className="table text-nowrap  border-primary">
+                <Table bordered hover className="table table-nowrap mb-0">
                   <thead>
                     <tr>
-                      <th scope="col">Id</th>
-                      <th scope="col">Alerts </th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Time</th>
+                      <th>Id</th>
+                      <th>Alert</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
-                  {Tweetdata1.map((item: any, index: number) => (
-                    <tbody key={index}>
-                      <tr>
-                        <th scope="row">{item.id}</th>
-                        <td>
-                          <span className="badge bg-light fs-13 text-dark">
-                            {item.alerts}
-                          </span>
-                        </td>
-                        <td>
-                          <div className="d-flex align-items-center">
-                            {item.status}
-                          </div>
-                        </td>
-                        <td>
-                          <div className="d-flex align-items-center">
-                            {item.time}
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  ))}
+                  <tbody>
+                    <tr>
+                      <td>
+                        <span>1.</span>
+                      </td>
+                      <td>
+                        <span className="blueColor">APIs</span>
+                      </td>
+                      <td className="text-muted">{tweetsData?.APIs}</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <span>2.</span>
+                      </td>
+                      <td>
+                        <span className="blueColor">DataBase Status</span>
+                      </td>
+                      <td>
+                        <span className="text-muted">{tweetsData?.dataBaseStatus}</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span>3.</span>
+                      </td>
+                      <td>
+                        <span className="blueColor">Server</span>
+                      </td>
+                      <td>
+                        <span className="text-muted">{tweetsData?.server}</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span>4.</span>
+                      </td>
+                      <td>
+                        <span className="blueColor">Tweets Received</span>
+                      </td>
+                      <td>
+                        <span className="text-muted">{tweetsData?.tweetsReceived}</span>
+                      </td>
+                    </tr>
+                  </tbody>
                 </Table>
               </div>
             </Card.Body>
@@ -73,4 +119,4 @@ const Jobdetails: FC<JobdetailsProps> = () => {
   );
 };
 
-export default Jobdetails;
+export default Alert;

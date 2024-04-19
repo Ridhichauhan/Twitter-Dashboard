@@ -1,14 +1,54 @@
-import { FC, Fragment, useState } from "react";
+import { FC, Fragment, useEffect, useState } from "react";
 import { Card, Col, InputGroup, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
-import { TweetsData } from "./crmdata";
-interface CrmProps {}
+import axios from "axios";
+import Loader from "../../../components/common/loader/loader";
+interface TweetsProps {
+  totalRecivedTweets: any;
+  totalAckTweets: number;
+}
 
-const Crm: FC<CrmProps> = () => {
+const Tweets: FC<TweetsProps> = () => {
   const [startDate, setStartDate] = useState(new Date());
+  const [startDate1, setStartDate1] = useState(new Date());
+  const [tweets, setTweets] = useState<any[]>([]);
+  const [loader, setLoader] = useState(false);
+  const authToken = "eyJhbGciOiJIUzI1NiJ9.NjQyZWE3OTlmNWFlZDRkYjljM2Y0ZGNk.awn0t67fZapAxQLIs9NmdPWHklkT4gL3uaVmCZuTpX4";
+  useEffect(() => {
+    fetchData();
+  }, []);
   const handleDateChange = (date: Date | null) => {
     if (date) {
       setStartDate(date);
+    }
+  };
+  const handleDateChange1 = (date: Date | null) => {
+    if (date) {
+      setStartDate1(date);
+    }
+  };
+  const fetchData = async () => { 
+    setLoader(true);
+    const data = {
+      fromDate: startDate.toISOString().slice(0, 10),
+      toDate: startDate1.toISOString().slice(0, 10),
+    };
+    try {
+      const response = await axios.post(
+        "https://loudfolder.com/analytics",
+        data,
+        {
+          headers: {
+            Authorization: authToken,
+          },
+        }
+      );
+      setTweets(response?.data?.STATUS_RESPONSE);
+    } 
+    catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoader(false);
     }
   };
   return (
@@ -35,6 +75,7 @@ const Crm: FC<CrmProps> = () => {
                       <DatePicker
                         selected={startDate}
                         onChange={handleDateChange}
+                        dateFormat="yyyy/MM/dd"
                       />
                     </InputGroup>
                   </div>
@@ -46,14 +87,16 @@ const Crm: FC<CrmProps> = () => {
                         <i className="ri-calendar-line"></i>
                       </InputGroup.Text>
                       <DatePicker
-                        selected={startDate}
-                        onChange={handleDateChange}
+                        selected={startDate1}
+                        onChange={handleDateChange1}
+                        dateFormat="yyyy/MM/dd"
                       />
                     </InputGroup>
                   </div>
                   <button
                     className="btn btn-sm text-nowrap bgColor text-white ms-2 mt-4 mb-2"
                     type="submit"
+                    onClick={fetchData}
                   >
                     Submit
                   </button>
@@ -63,33 +106,117 @@ const Crm: FC<CrmProps> = () => {
           </Card>
         </Col>
         <Col>
-          <Row>
-            {TweetsData.map((item: any, index: number) => (
-              <Col xxl={3} key={index}>
+          {loader ? (
+            <div className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center">
+            {<Loader/>}
+            </div>
+          ) : (
+            <Row>
+              <Col xxl={3}>
                 <Card className="custom-card">
                   <Card.Header className="align-items-center">
-                    <div className="me-2"></div>
                     <div className="flex-fill">
                       <h1 className="fw-semibold fs-14 d-block text-truncate">
-                        {item.heading}
+                        Total Recived Tweets
                       </h1>
                     </div>
                     <div className="">
-                      <i className={`${item.icon} fw-bold fs-4`}></i>
+                      <i className="bi bi-check-all fw-bold fs-4"></i>
                     </div>
                   </Card.Header>
                   <Card.Body>
-                    <p className="fw-semibold mb-1 fs-16">{item.number}</p>
-                    <p className="text-muted mb-3">{item.body}</p>
-                  </Card.Body> 
+                    <p className="fw-semibold mb-1 fs-16">
+                      {tweets?.totalRecivedTweets}
+                    </p>
+                    <p className="text-muted mb-3">Time Stamp Data</p>
+                  </Card.Body>
                 </Card>
               </Col>
-            ))}
-          </Row>
+              <Col xxl={3}>
+                <Card className="custom-card">
+                  <Card.Header className="align-items-center">
+                    <div className="flex-fill">
+                      <h1 className="fw-semibold fs-14 d-block text-truncate">
+                        Total Acknowledge Tweets
+                      </h1>
+                    </div>
+                    <div className="">
+                      <i className="bi bi-clipboard2-check fw-bold fs-4"></i>
+                    </div>
+                  </Card.Header>
+                  <Card.Body>
+                    <p className="fw-semibold mb-1 fs-16">
+                      {tweets?.totalAckTweets}
+                    </p>
+                    <p className="text-muted mb-3">Time Stamp Data</p>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col xxl={3}>
+                <Card className="custom-card">
+                  <Card.Header className="align-items-center">
+                    <div className="flex-fill">
+                      <h1 className="fw-semibold fs-14 d-block text-truncate">
+                        Total Unacknowledge Tweets
+                      </h1>
+                    </div>
+                    <div className="">
+                      <i className="bi bi-send fw-bold fs-4"></i>
+                    </div>
+                  </Card.Header>
+                  <Card.Body>
+                    <p className="fw-semibold mb-1 fs-16">
+                      {tweets?.totalUnAckTweets}
+                    </p>
+                    <p className="text-muted mb-3">Time Stamp Data</p>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col xxl={3}>
+                <Card className="custom-card">
+                  <Card.Header className="align-items-center">
+                    <div className="flex-fill">
+                      <h1 className="fw-semibold fs-14 d-block text-truncate">
+                        Total Sent Tweets
+                      </h1>
+                    </div>
+                    <div className="">
+                      <i className="bi bi-envelope-check fw-bold fs-4"></i>
+                    </div>
+                  </Card.Header>
+                  <Card.Body>
+                    <p className="fw-semibold mb-1 fs-16">
+                      {tweets?.totalSentTweets}
+                    </p>
+                    <p className="text-muted mb-3">Time Stamp Data</p>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col xxl={3}>
+                <Card className="custom-card">
+                  <Card.Header className="align-items-center">
+                    <div className="flex-fill">
+                      <h1 className="fw-semibold fs-14 d-block text-truncate">
+                        Total Unsent Tweets
+                      </h1>
+                    </div>
+                    <div className="">
+                      <i className="bi bi-envelope-dash fw-bold fs-4"></i>
+                    </div>
+                  </Card.Header>
+                  <Card.Body>
+                    <p className="fw-semibold mb-1 fs-16">
+                      {tweets?.totalUnSentTweets}
+                    </p>
+                    <p className="text-muted mb-3">Time Stamp Data</p>
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
+          )}
         </Col>
       </Row>
     </Fragment>
   );
 };
-
-export default Crm;
+export default Tweets;

@@ -15,6 +15,7 @@
     "@reduxjs/toolkit": "^1.9.7",
     "@simonwep/pickr": "^1.9.0",
     "apexcharts": "^3.44.0",
+    "axios": "^1.6.8",
     "chart.js": "^4.4.0",
     "filepond": "^4.30.4",
     "filepond-plugin-image-preview": "^4.6.11",

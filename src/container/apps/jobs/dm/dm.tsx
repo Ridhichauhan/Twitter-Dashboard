@@ -1,17 +1,73 @@
-import { FC, Fragment, useState } from "react";
-import { Card, Col, InputGroup, Row, Table } from "react-bootstrap";
+import { FC, Fragment, useEffect, useState } from "react";
+import { Card, Col, InputGroup, Pagination, Row, Table } from "react-bootstrap";
 import DatePicker from "react-datepicker";
-import { Tweetdata } from "../tweet/joblistdata";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import Loader from "../../../../components/common/loader/loader";
 
 interface JobpostProps {}
 
 const Jobpost: FC<JobpostProps> = () => {
   const [startDate, setStartDate] = useState(new Date());
+  const [startDate1, setStartDate1] = useState(new Date());
+  const [tweets, setTweets] = useState<any[]>([]);
+  console.log("object,", tweets)
+  const [loader, setLoader] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const authToken =
+    "eyJhbGciOiJIUzI1NiJ9.MTU1MjI1ODE1NTA4MTQ1MzU2OA.lTui2zIUqqskGj5K4keIId0f-SRCQpUuH7zapOJ0_GI";
+  const itemsPerPage = 10;
+  useEffect(() => {
+    fetchData();
+  }, [currentPage]);
   const handleDateChange = (date: Date | null) => {
     if (date) {
       setStartDate(date);
     }
   };
+  const handleDateChange1 = (date: Date | null) => {
+    if (date) {
+      setStartDate1(date);
+    }
+  };
+  const fetchData = async () => {
+    const startUTC = new Date(startDate);
+    const endUTC = new Date(startDate1);
+    startUTC.setUTCHours(0, 0, 0, 0);
+    endUTC.setUTCHours(23, 59, 59, 999);
+    setLoader(true);
+    try {
+      const response = await axios.get(
+        `https://loudfolderstaging.com/getDmsDetailsForDateRange?page=2`,
+        {
+          params: {
+            startDate: startDate.toUTCString(),
+            endDate: startDate1.toUTCString(),
+          },
+          headers: {
+            Authorization: authToken,
+          },
+        }
+      );
+      console.log(response);
+      setTweets(response?.data?.data?.dmsDataToReturn);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+    setLoader(false);
+  };
+  const indexOfLastTweet = currentPage * itemsPerPage;
+  const indexOfFirstTweet = indexOfLastTweet - itemsPerPage;
+  const currentTweets = tweets.slice(indexOfFirstTweet, indexOfLastTweet);
+  console.log(currentTweets);
+  const paginate = (pageNumber: number) => {
+    console.log("Clicked page:", pageNumber);
+    setCurrentPage(pageNumber);
+  };
+  console.log("Current page:", currentPage);
+  console.log("Total tweets:", tweets.length);
+  console.log("Index of last tweet:", indexOfLastTweet);
+  console.log("Index of first tweet:", indexOfFirstTweet);
   return (
     <Fragment>
       <Col>
@@ -36,6 +92,8 @@ const Jobpost: FC<JobpostProps> = () => {
                       <DatePicker
                         selected={startDate}
                         onChange={handleDateChange}
+                        dateFormat="yyyy/MM/dd h:mm aa"
+                        showTimeInput
                       />
                     </InputGroup>
                   </div>
@@ -47,14 +105,17 @@ const Jobpost: FC<JobpostProps> = () => {
                         <i className="ri-calendar-line"></i>
                       </InputGroup.Text>
                       <DatePicker
-                        selected={startDate}
-                        onChange={handleDateChange}
+                        selected={startDate1}
+                        onChange={handleDateChange1}
+                        dateFormat="yyyy/MM/dd h:mm aa"
+                        showTimeInput
                       />
                     </InputGroup>
                   </div>
                   <button
                     className="btn btn-sm text-nowrap bgColor text-white ms-2 mt-4 mb-2"
                     type="submit"
+                    onClick={fetchData}
                   >
                     Submit
                   </button>
@@ -62,56 +123,137 @@ const Jobpost: FC<JobpostProps> = () => {
               </div>
             </Card.Body>
           </Card>
-          <Card>
-            <Card.Body>
-              <div className="table-responsive">
-                <Table bordered className="table text-nowrap  border-primary">
-                  <thead>
-                    <tr>
-                      <th scope="col">Id</th>
-                      <th scope="col">Url</th>
-                      <th scope="col">Dm Id</th>
-                      <th scope="col">Dm Recived</th>
-                      <th scope="col">Sent to SMGT</th>
-                      <th scope="col">Acknowledgment</th>
-                    </tr>
-                  </thead>
-                  {Tweetdata.map((item: any, index: number) => (
-                    <tbody key={index}>
-                      <tr>
-                        <th scope="row">{item.id}</th>
-                        <td>
-                          <span className="badge bg-light fs-13 text-dark">
-                            {item.url}
-                          </span>
-                        </td>
-                        <td>
-                          <div className="d-flex align-items-center">
-                            {item.tweetid}
-                          </div>
-                        </td>
-                        <td>
-                          <div className="d-flex align-items-center">
-                            {item.tweetrec}
-                          </div>
-                        </td>
-                        <td>
-                          <div className="d-flex align-items-center">
-                            {item.sent}
-                          </div>
-                        </td>
-                        <td>
-                          <div className="d-flex align-items-center">
-                            {item.action}
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  ))}
-                </Table>
-              </div>
-            </Card.Body>
-          </Card>
+          {loader ? (
+            <div className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center">
+              {<Loader />}
+            </div>
+          ) : (
+            <>
+              <Card>
+                <Card.Body style={{ height: "620px" }}>
+                  <div className="table-responsive">
+                    <Table
+                      bordered
+                      className="table text-nowrap  border-primary"
+                    >
+                      <thead>
+                        <tr>
+                          <th scope="col">S.No</th>
+                          <th scope="col">Url</th>
+                          <th scope="col">Dm Id</th>
+                          <th scope="col">Dm Recived</th>
+                          <th scope="col">Dm Creation Time</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Acknowledgment</th>
+                        </tr>
+                      </thead>
+                      {currentTweets?.map((item: any, index: number) => (
+                        <tbody key={index}>
+                          <tr>
+                            <th scope="row">{index + 1}</th>
+                            <td>
+                              <span className="badge bg-light fs-13 text-dark">
+                                <Link
+                                  className="blueColor fw-semibold text-break"
+                                  to="https://twitter.com"
+                                  target="_blank"
+                                >
+                                  <u>https://twitter.com</u>
+                                </Link>
+                              </span>
+                            </td>
+                            <td>
+                              <div className="d-flex align-items-center">
+                                {item.dmsId}
+                              </div>
+                            </td>
+                            <td>
+                              {/* <div className="d-flex align-items-center">
+                                {new Date(item.receivedTime).toLocaleString(
+                                  "en-US",
+                                  {
+                                    timeZone: "UTC",
+                                    dateStyle: "medium",
+                                    timeStyle: "medium",
+                                  }
+                                )}{" "}
+                                (IST)
+                              </div> */}
+                               <div className="d-flex align-items-center">
+                                {new Date(
+                                  new Date(item.receivedTime).getTime() -
+                                    5.5 * 60 * 60 * 1000
+                                ).toLocaleString("en-US", {
+                                  timeZone: "UTC",
+                                  dateStyle: "medium",
+                                  timeStyle: "medium",
+                                })}{" "}
+                                (IST)
+                              </div>
+                            </td>
+                            <td>
+                              <div className="d-flex align-items-center">
+                                {new Date(item.dmCreationTime).toLocaleString(
+                                  "en-US",
+                                  {
+                                    timeZone: "UTC",
+                                    dateStyle: "medium",
+                                    timeStyle: "medium",
+                                  }
+                                )}{" "}
+                                (IST)
+                              </div>
+                            </td>
+                            <td>
+                              <div className="d-flex align-items-center">
+                                {item.sentToSMGT === true ? "yes" : "failed"}
+                              </div>
+                            </td>
+                            <td>
+                              <div className="d-flex align-items-center">
+                                {item.acknowledgement}
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      ))}
+                    </Table>
+                  </div>
+                </Card.Body>
+              </Card>
+              <Card.Body className="d-flex justify-content-end card-body d-flex flex-wrap">
+                <nav aria-label="..." className="me-3 mt-2 ">
+                  <Pagination className="pagination">
+                    <Pagination.Item
+                      disabled={currentPage === 1}
+                      onClick={() => setCurrentPage(currentPage - 1)}
+                    >
+                      Previous
+                    </Pagination.Item>
+                    {Array.from({
+                      length: Math.ceil(tweets.length / itemsPerPage),
+                    }).map((_, index) => (
+                      <Pagination.Item
+                        key={index}
+                        active={index + 1 === currentPage}
+                        onClick={() => paginate(index + 1)}
+                      >
+                        {index + 1}
+                      </Pagination.Item>
+                    ))}
+                    <Pagination.Item
+                      disabled={
+                        currentPage === Math.ceil(tweets.length / itemsPerPage)
+                      }
+                      onClick={() => setCurrentPage(currentPage + 1)}
+                    >
+                      Next
+                    </Pagination.Item>
+                  </Pagination>
+                </nav>
+              </Card.Body>
+            </>
+          )}
         </Col>
       </Row>
     </Fragment>

@@ -7,8 +7,8 @@ const Loader = () => {
     // });
     
     return (
-        <div id="loader">
-            <img src={loader} className="loader-img" alt="Loader" />
+        <div id="loader" className='' style={{color:"#238ae6"}}>
+            <img src={loader} className="" style={{color:"#238ae6"}} alt="Loader" />
         </div>
     );
 };
