@@ -7,7 +7,7 @@ import Loader from "../../../components/common/loader/loader";
 const Jobs = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [startDate1, setStartDate1] = useState(new Date());
-  const [tweets, setTweets] = useState<any[]>([]);
+  const [tweets, setTweets] = useState<any>([]);
   const [loader, setLoader] = useState(false);
   const authToken =
     "eyJhbGciOiJIUzI1NiJ9.NjQyZWE3OTlmNWFlZDRkYjljM2Y0ZGNk.awn0t67fZapAxQLIs9NmdPWHklkT4gL3uaVmCZuTpX4";

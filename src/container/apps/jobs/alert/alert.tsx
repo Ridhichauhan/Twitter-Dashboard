@@ -3,10 +3,10 @@ import { FC, Fragment, useEffect, useState } from "react";
 import { Card, Col, Row, Table } from "react-bootstrap";
 
 interface AlertProps {
-  APIs:string;
-  dataBaseStatus:string;
-  server:string;
-  tweetsReceived: string;
+  APIs?:string;
+  dataBaseStatus?:string;
+  server?:string;
+  tweetsReceived?: string;
 }
 
 const Alert: FC<AlertProps> = () => {

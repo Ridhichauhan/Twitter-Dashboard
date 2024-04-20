@@ -11,15 +11,16 @@ const Jobpost: FC<JobpostProps> = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [startDate1, setStartDate1] = useState(new Date());
   const [tweets, setTweets] = useState<any[]>([]);
-  console.log("object,", tweets)
+  console.log("object,", tweets);
   const [loader, setLoader] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage=1;
+  const [page, setPage] = useState(1);
   const authToken =
     "eyJhbGciOiJIUzI1NiJ9.MTU1MjI1ODE1NTA4MTQ1MzU2OA.lTui2zIUqqskGj5K4keIId0f-SRCQpUuH7zapOJ0_GI";
   const itemsPerPage = 10;
   useEffect(() => {
     fetchData();
-  }, [currentPage]);
+  }, [page]);
   const handleDateChange = (date: Date | null) => {
     if (date) {
       setStartDate(date);
@@ -38,7 +39,7 @@ const Jobpost: FC<JobpostProps> = () => {
     setLoader(true);
     try {
       const response = await axios.get(
-        `https://loudfolderstaging.com/getDmsDetailsForDateRange?page=2`,
+        `https://loudfolderstaging.com/getDmsDetailsForDateRange?page=${page}`,
         {
           params: {
             startDate: startDate.toUTCString(),
@@ -60,10 +61,7 @@ const Jobpost: FC<JobpostProps> = () => {
   const indexOfFirstTweet = indexOfLastTweet - itemsPerPage;
   const currentTweets = tweets.slice(indexOfFirstTweet, indexOfLastTweet);
   console.log(currentTweets);
-  const paginate = (pageNumber: number) => {
-    console.log("Clicked page:", pageNumber);
-    setCurrentPage(pageNumber);
-  };
+
   console.log("Current page:", currentPage);
   console.log("Total tweets:", tweets.length);
   console.log("Index of last tweet:", indexOfLastTweet);
@@ -224,29 +222,20 @@ const Jobpost: FC<JobpostProps> = () => {
               <Card.Body className="d-flex justify-content-end card-body d-flex flex-wrap">
                 <nav aria-label="..." className="me-3 mt-2 ">
                   <Pagination className="pagination">
-                    <Pagination.Item
-                      disabled={currentPage === 1}
-                      onClick={() => setCurrentPage(currentPage - 1)}
+                  <Pagination.Item
+                      disabled={page === 1}
+                      onClick={() => setPage(page + -1)}
                     >
                       Previous
                     </Pagination.Item>
-                    {Array.from({
-                      length: Math.ceil(tweets.length / itemsPerPage),
-                    }).map((_, index) => (
-                      <Pagination.Item
-                        key={index}
-                        active={index + 1 === currentPage}
-                        onClick={() => paginate(index + 1)}
-                      >
-                        {index + 1}
-                      </Pagination.Item>
-                    ))}
-                    <Pagination.Item
-                      disabled={
-                        currentPage === Math.ceil(tweets.length / itemsPerPage)
-                      }
-                      onClick={() => setCurrentPage(currentPage + 1)}
+                    <div
+                      aria-current="page"
+                      className="p-2 text-white"
+                      style={{ background: "#238ae6" }}
                     >
+                      {page}
+                    </div>
+                    <Pagination.Item onClick={() => setPage(page + 1)} href="#">
                       Next
                     </Pagination.Item>
                   </Pagination>

@@ -9,16 +9,17 @@ interface TweetProps {}
 
 const Tweet: FC<TweetProps> = () => {
   const [startDate, setStartDate] = useState(new Date());
-  console.log(startDate.toISOString())
+  console.log(startDate.toISOString());
   const [startDate1, setStartDate1] = useState(new Date());
   const [tweets, setTweets] = useState<any[]>([]);
   console.log("data", tweets);
   const [loader, setLoader] = useState(false);
+  const [page, setPage] = useState(1);
   const authToken =
     "eyJhbGciOiJIUzI1NiJ9.MTU1MjI1ODE1NTA4MTQ1MzU2OA.lTui2zIUqqskGj5K4keIId0f-SRCQpUuH7zapOJ0_GI";
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [page]);
   const handleDateChange = (date: Date | null) => {
     if (date) {
       setStartDate(date);
@@ -37,7 +38,7 @@ const Tweet: FC<TweetProps> = () => {
     setLoader(true);
     try {
       const response = await axios.get(
-        "https://loudfolderstaging.com/getTweetsDetailsForDateRange",
+        `https://loudfolderstaging.com/getTweetsDetailsForDateRange?page=${page}`,
         {
           params: {
             startDate: startDate.toISOString(),
@@ -77,8 +78,7 @@ const Tweet: FC<TweetProps> = () => {
                         {" "}
                         <i className="ri-calendar-line"></i>
                       </InputGroup.Text>
-                      <DatePicker 
-                      
+                      <DatePicker
                         selected={startDate}
                         onChange={handleDateChange}
                         dateFormat="yyyy/MM/dd h:mm aa"
@@ -200,15 +200,22 @@ const Tweet: FC<TweetProps> = () => {
               <Card.Body className="d-flex justify-content-end card-body d-flex flex-wrap">
                 <nav aria-label="..." className="me-3">
                   <Pagination className="pagination">
-                    <Pagination.Item disabled>Previous</Pagination.Item>
+                    <Pagination.Item
+                      disabled={page === 1}
+                      onClick={() => setPage(page + -1)}
+                    >
+                      Previous
+                    </Pagination.Item>
                     <div
                       aria-current="page"
                       className="p-2 text-white"
                       style={{ background: "#238ae6" }}
                     >
-                      1
+                      {page}
                     </div>
-                    <Pagination.Item href="#">Next</Pagination.Item>
+                    <Pagination.Item onClick={() => setPage(page + 1)} href="#">
+                      Next
+                    </Pagination.Item>
                   </Pagination>
                 </nav>
               </Card.Body>
