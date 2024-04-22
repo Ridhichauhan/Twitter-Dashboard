@@ -1,78 +1,70 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState ,} from "react";
 import {
-  Badge,
   Button,
   ButtonGroup,
   Dropdown,
   Form,
   ListGroup,
   Modal,
-  Row,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { MENUITEMS } from "../sidebar/sidemenu/sidemenu";
+// import { MENUITEMS } from "../sidebar/sidemenu/sidemenu";
 import { connect } from "react-redux";
 import { ThemeChanger } from "../../../redux/action";
-import desktoplogo from "../../../assets/images/brand-logos/desktop-logo.png";
-import togglelogo from "../../../assets/images/brand-logos/toggle-logo.png";
-import desktopdark from "../../../assets/images/brand-logos/desktop-dark.png";
-import toggledark from "../../../assets/images/brand-logos/toggle-dark.png";
-import desktopwhite from "../../../assets/images/brand-logos/desktop-white.png";
-import togglewhite from "../../../assets/images/brand-logos/toggle-white.png";
-import us from "../../../assets/images/flags/us_flag.jpg";
-import spain from "../../../assets/images/flags/spain_flag.jpg";
-import french from "../../../assets/images/flags/french_flag.jpg";
-import germany from "../../../assets/images/flags/germany_flag.jpg";
-import italy from "../../../assets/images/flags/italy_flag.jpg";
-import russia from "../../../assets/images/flags/russia_flag.jpg";
-import product1 from "../../../assets/images/ecommerce/jpg/1.jpg";
-import product3 from "../../../assets/images/ecommerce/jpg/3.jpg";
-import product5 from "../../../assets/images/ecommerce/jpg/5.jpg";
-import product4 from "../../../assets/images/ecommerce/jpg/4.jpg";
-import product6 from "../../../assets/images/ecommerce/jpg/6.jpg";
-import face9 from "../../../assets/images/faces/9.jpg";
-import figma from "../../../assets/images/apps/figma.png";
-import powerpoint from "../../../assets/images/apps/microsoft-powerpoint.png";
-import word from "../../../assets/images/apps/microsoft-word.png";
-import calender from "../../../assets/images/apps/calender.png";
-import sketch from "../../../assets/images/apps/sketch.png";
-import googledocs from "../../../assets/images/apps/google-docs.png";
-import google from "../../../assets/images/apps/google.png";
-import translate from "../../../assets/images/apps/translate.png";
-import googlesheets from "../../../assets/images/apps/google-sheets.png";
+// import us from "../../../assets/images/flags/us_flag.jpg";
+// import spain from "../../../assets/images/flags/spain_flag.jpg";
+// import french from "../../../assets/images/flags/french_flag.jpg";
+// import germany from "../../../assets/images/flags/germany_flag.jpg";
+// import italy from "../../../assets/images/flags/italy_flag.jpg";
+// import russia from "../../../assets/images/flags/russia_flag.jpg";
+// import product1 from "../../../assets/images/ecommerce/jpg/1.jpg";
+// import product3 from "../../../assets/images/ecommerce/jpg/3.jpg";
+// import product5 from "../../../assets/images/ecommerce/jpg/5.jpg";
+// import product4 from "../../../assets/images/ecommerce/jpg/4.jpg";
+// import product6 from "../../../assets/images/ecommerce/jpg/6.jpg";
+// import face9 from "../../../assets/images/faces/9.jpg";
+// import figma from "../../../assets/images/apps/figma.png";
+// import powerpoint from "../../../assets/images/apps/microsoft-powerpoint.png";
+// import word from "../../../assets/images/apps/microsoft-word.png";
+// import calender from "../../../assets/images/apps/calender.png";
+// import sketch from "../../../assets/images/apps/sketch.png";
+// import googledocs from "../../../assets/images/apps/google-docs.png";
+// import google from "../../../assets/images/apps/google.png";
+// import translate from "../../../assets/images/apps/translate.png";
+// import googlesheets from "../../../assets/images/apps/google-sheets.png";
 import store from "../../../redux/store";
 
-const Header = ({ local_varaiable, ThemeChanger }: any) => {
+const Header = ({ ThemeChanger}:any) => {
   // for search modal
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
 
   ///*** */
-  const [fullScreen, setFullScreen] = useState(false);
+  // const [fullScreen, setFullScreen] = useState(false);
 
-  const toggleFullScreen = () => {
-    const elem = document.documentElement;
+  // const toggleFullScreen = () => {
+  //   const elem = document.documentElement;
 
-    if (!document.fullscreenElement) {
-      elem.requestFullscreen().then(() => setFullScreen(true));
-    } else {
-      document.exitFullscreen().then(() => setFullScreen(false));
-    }
-  };
+  //   if (!document.fullscreenElement) {
+  //     elem.requestFullscreen().then(() => setFullScreen(true));
+  //   } else {
+  //     document.exitFullscreen().then(() => setFullScreen(false));
+  //   }
+  // };
 
-  const handleFullscreenChange = () => {
-    setFullScreen(!!document.fullscreenElement);
-  };
+  // const handleFullscreenChange = () => {
+  //   setFullScreen(!!document.fullscreenElement);
+  // };
 
-  useEffect(() => {
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
+  // useEffect(() => {
+  //   document.addEventListener("fullscreenchange", handleFullscreenChange);
 
-    return () => {
-      document.removeEventListener("fullscreenchange", handleFullscreenChange);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  //   };
+  // }, []);
 
   //Search functionality
   const [show1, setShow1] = useState(false);
@@ -91,27 +83,27 @@ const Header = ({ local_varaiable, ThemeChanger }: any) => {
     const i: any = [];
     const allElement2: any = [];
 
-    MENUITEMS.map((mainlevel) => {
-      if (mainlevel.Items) {
-        setShow1(true);
-        mainlevel.Items.map((sublevel) => {
-          if (sublevel.children) {
-            sublevel.children.map((sublevel1: any) => {
-              i.push(sublevel1);
-              if (sublevel1.children) {
-                sublevel1.children.map((sublevel2: any) => {
-                  i.push(sublevel2);
-                  return sublevel2;
-                });
-              }
-              return sublevel1;
-            });
-          }
-          return sublevel;
-        });
-      }
-      return mainlevel;
-    });
+    // MENUITEMS.map((mainlevel) => {
+    //   if (mainlevel.Items) {
+    //     setShow1(true);
+    //     mainlevel.Items.map((sublevel) => {
+    //       if (sublevel.children) {
+    //         sublevel.children.map((sublevel1: any) => {
+    //           i.push(sublevel1);
+    //           if (sublevel1.children) {
+    //             sublevel1.children.map((sublevel2: any) => {
+    //               i.push(sublevel2);
+    //               return sublevel2;
+    //             });
+    //           }
+    //           return sublevel1;
+    //         });
+    //       }
+    //       return sublevel;
+    //     });
+    //   }
+    //   return mainlevel;
+    // });
     for (const allElement of i) {
       if (allElement.title.toLowerCase().includes(inputvalue.toLowerCase())) {
         if (
@@ -137,53 +129,53 @@ const Header = ({ local_varaiable, ThemeChanger }: any) => {
     setNavData(allElement2);
   };
 
-  const Switchericon = () => {
-    document.querySelector(".offcanvas-end")?.classList.toggle("show");
-    const Rightside: any = document.querySelector(".offcanvas-end");
-    Rightside.style.insetInlineEnd = "0px";
-    if (
-      document.querySelector(".switcher-backdrop")?.classList.contains("d-none")
-    ) {
-      document.querySelector(".switcher-backdrop")?.classList.add("d-block");
-      document.querySelector(".switcher-backdrop")?.classList.remove("d-none");
-    }
-  };
+  // const Switchericon = () => {
+  //   document.querySelector(".offcanvas-end")?.classList.toggle("show");
+  //   const Rightside: any = document.querySelector(".offcanvas-end");
+  //   Rightside.style.insetInlineEnd = "0px";
+  //   if (
+  //     document.querySelector(".switcher-backdrop")?.classList.contains("d-none")
+  //   ) {
+  //     document.querySelector(".switcher-backdrop")?.classList.add("d-block");
+  //     document.querySelector(".switcher-backdrop")?.classList.remove("d-none");
+  //   }
+  // };
 
-  //Dark Model
-  const ToggleDark = () => {
-    ThemeChanger({
-      ...local_varaiable,
-      dataThemeMode: local_varaiable.dataThemeMode == "dark" ? "light" : "dark",
-      dataHeaderStyles:
-        local_varaiable.dataHeaderStyles == "dark" ? "light" : "dark",
-      dataMenuStyles:
-        local_varaiable.dataNavLayout == "horizontal"
-          ? local_varaiable.dataThemeMode == "dark"
-            ? "light"
-            : "dark"
-          : "dark",
-    });
-    const theme = store.getState();
+  // // Dark Model
+  // const ToggleDark = () => {
+  //   ThemeChanger({
+  //     ...local_varaiable,
+  //     dataThemeMode: local_varaiable.dataThemeMode == "dark" ? "light" : "dark",
+  //     dataHeaderStyles:
+  //       local_varaiable.dataHeaderStyles == "dark" ? "light" : "dark",
+  //     dataMenuStyles:
+  //       local_varaiable.dataNavLayout == "horizontal"
+  //         ? local_varaiable.dataThemeMode == "dark"
+  //           ? "light"
+  //           : "dark"
+  //         : "dark",
+  //   });
+  //   const theme = store.getState();
 
-    if (theme.dataThemeMode != "dark") {
-      ThemeChanger({
-        ...theme,
-        bodyBg1: "",
-        bodyBg2: "",
-        darkBg: "",
-        inputBorder: "",
-      });
-      localStorage.setItem("ynexlighttheme", "light");
-      localStorage.removeItem("ynexdarktheme");
-      localStorage.removeItem("darkBgRGB1");
-      localStorage.removeItem("darkBgRGB2");
-      localStorage.removeItem("darkBgRGB3");
-      localStorage.removeItem("darkBgRGB4");
-    } else {
-      localStorage.setItem("ynexdarktheme", "dark");
-      localStorage.removeItem("ynexlighttheme");
-    }
-  };
+  //   if (theme.dataThemeMode != "dark") {
+  //     ThemeChanger({
+  //       ...theme,
+  //       bodyBg1: "",
+  //       bodyBg2: "",
+  //       darkBg: "",
+  //       inputBorder: "",
+  //     });
+  //     localStorage.setItem("ynexlighttheme", "light");
+  //     localStorage.removeItem("ynexdarktheme");
+  //     localStorage.removeItem("darkBgRGB1");
+  //     localStorage.removeItem("darkBgRGB2");
+  //     localStorage.removeItem("darkBgRGB3");
+  //     localStorage.removeItem("darkBgRGB4");
+  //   } else {
+  //     localStorage.setItem("ynexdarktheme", "dark");
+  //     localStorage.removeItem("ynexlighttheme");
+  //   }
+  // };
 
   function menuClose() {
     const theme = store.getState();
@@ -221,7 +213,7 @@ const Header = ({ local_varaiable, ThemeChanger }: any) => {
           // icon-text
           case "icontext":
             ThemeChanger({ ...theme, dataNavStyle: "" });
-            if (theme.toggled === "icon-text-close") {
+            if (theme.toggled === "icon-text-close ") {
               ThemeChanger({ ...theme, toggled: "" });
             } else {
               ThemeChanger({ ...theme, toggled: "icon-text-close" });
@@ -330,139 +322,139 @@ const Header = ({ local_varaiable, ThemeChanger }: any) => {
       }
     }
   };
-  const cartProduct = [
-    {
-      id: 1,
-      src: product1,
-      name: "SomeThing Phone",
-      price: "$1,299.00",
-      color: "Metallic Blue",
-      text: "6gb Ram",
-      class: "",
-    },
-    {
-      id: 2,
-      src: product3,
-      name: "Stop Watch",
-      price: "$179.29",
-      color: "Analog",
-      text: "Free shipping",
-      class: "badge bg-pink-transparent fs-10",
-    },
-    {
-      id: 3,
-      src: product5,
-      name: "Photo Frame",
-      price: "$29.00",
-      color: "Decorative",
-      text: "",
-      class: "",
-    },
-    {
-      id: 4,
-      src: product4,
-      name: "Kikon Camera",
-      price: "$4,999.00",
-      color: "Black",
-      text: "50MM",
-      class: "",
-    },
-    {
-      id: 5,
-      src: product6,
-      name: "Canvas Shoes",
-      price: "$129.00",
-      color: "Gray",
-      text: "Sports",
-      class: "",
-    },
-  ];
-  const [cartItems, setCartItems] = useState([...cartProduct]);
-  const [cartItemCount, setCartItemCount] = useState(cartProduct.length);
+  // const cartProduct = [
+  //   {
+  //     id: 1,
+  //     src: product1,
+  //     name: "SomeThing Phone",
+  //     price: "$1,299.00",
+  //     color: "Metallic Blue",
+  //     text: "6gb Ram",
+  //     class: "",
+  //   },
+  //   {
+  //     id: 2,
+  //     src: product3,
+  //     name: "Stop Watch",
+  //     price: "$179.29",
+  //     color: "Analog",
+  //     text: "Free shipping",
+  //     class: "badge bg-pink-transparent fs-10",
+  //   },
+  //   {
+  //     id: 3,
+  //     src: product5,
+  //     name: "Photo Frame",
+  //     price: "$29.00",
+  //     color: "Decorative",
+  //     text: "",
+  //     class: "",
+  //   },
+  //   {
+  //     id: 4,
+  //     src: product4,
+  //     name: "Kikon Camera",
+  //     price: "$4,999.00",
+  //     color: "Black",
+  //     text: "50MM",
+  //     class: "",
+  //   },
+  //   {
+  //     id: 5,
+  //     src: product6,
+  //     name: "Canvas Shoes",
+  //     price: "$129.00",
+  //     color: "Gray",
+  //     text: "Sports",
+  //     class: "",
+  //   },
+  // ];
+  // const [cartItems, setCartItems] = useState([...cartProduct]);
+  // const [cartItemCount, setCartItemCount] = useState(cartProduct.length);
 
-  const handleRemove = (itemId: any) => {
-    const updatedCart = cartItems.filter((item) => item.id !== itemId);
-    setCartItems(updatedCart);
-    setCartItemCount(updatedCart.length);
-  };
-  const initialNotifications = [
-    {
-      id: 1,
-      avatarColor: "primary",
-      icon: "ti-gift",
-      text1: "Your Order Has Been Shipped",
-      text2: "Order No: 123456 Has Shipped To YourDelivery Address",
-      class: "",
-      class1: "",
-    },
-    {
-      id: 2,
-      avatarColor: "secondary",
-      icon: "ti-discount-2",
-      text1: "Discount Available",
-      text2: "Discount Available On Selected Products",
-      class: "",
-      class1: "",
-    },
-    {
-      id: 3,
-      avatarColor: "pink",
-      icon: "ti-user-check",
-      text1: "Account Has Been Verified",
-      text2: "Your Account Has Been Verified Successfully",
-      class: "",
-      class1: "",
-    },
-    {
-      id: 4,
-      avatarColor: "warning",
-      icon: "ti-circle-check",
-      text1: "Order Placed ",
-      text2: "Order Placed Successflly",
-      class: "text-warning",
-      class1: " ID:1116773",
-    },
-    {
-      id: 5,
-      avatarColor: "success",
-      icon: "ti-clock",
-      text1: "Order Delayed",
-      text2: "Order Delayed Unfortunately",
-      class: "text-success",
-      class1: " ID:7731116",
-    },
-  ];
+  // const handleRemove = (itemId: any) => {
+  //   const updatedCart = cartItems.filter((item) => item.id !== itemId);
+  //   setCartItems(updatedCart);
+  //   setCartItemCount(updatedCart.length);
+  // };
+  // const initialNotifications = [
+  //   {
+  //     id: 1,
+  //     avatarColor: "primary",
+  //     icon: "ti-gift",
+  //     text1: "Your Order Has Been Shipped",
+  //     text2: "Order No: 123456 Has Shipped To YourDelivery Address",
+  //     class: "",
+  //     class1: "",
+  //   },
+  //   {
+  //     id: 2,
+  //     avatarColor: "secondary",
+  //     icon: "ti-discount-2",
+  //     text1: "Discount Available",
+  //     text2: "Discount Available On Selected Products",
+  //     class: "",
+  //     class1: "",
+  //   },
+  //   {
+  //     id: 3,
+  //     avatarColor: "pink",
+  //     icon: "ti-user-check",
+  //     text1: "Account Has Been Verified",
+  //     text2: "Your Account Has Been Verified Successfully",
+  //     class: "",
+  //     class1: "",
+  //   },
+  //   {
+  //     id: 4,
+  //     avatarColor: "warning",
+  //     icon: "ti-circle-check",
+  //     text1: "Order Placed ",
+  //     text2: "Order Placed Successflly",
+  //     class: "text-warning",
+  //     class1: " ID:1116773",
+  //   },
+  //   {
+  //     id: 5,
+  //     avatarColor: "success",
+  //     icon: "ti-clock",
+  //     text1: "Order Delayed",
+  //     text2: "Order Delayed Unfortunately",
+  //     class: "text-success",
+  //     class1: " ID:7731116",
+  //   },
+  // ];
 
-  const [notifications, setNotifications] = useState([...initialNotifications]);
+  // const [notifications, setNotifications] = useState([...initialNotifications]);
 
-  const handleNotificationClose = (index: any) => {
-    // Create a copy of the notifications array and remove the item at the specified index
-    const updatedNotifications = [...notifications];
-    updatedNotifications.splice(index, 1);
-    setNotifications(updatedNotifications);
-  };
+  // const handleNotificationClose = (index: any) => {
+  //   // Create a copy of the notifications array and remove the item at the specified index
+  //   const updatedNotifications = [...notifications];
+  //   updatedNotifications.splice(index, 1);
+  //   setNotifications(updatedNotifications);
+  // };
   return (
     <Fragment>
       <header className="app-header">
         <div className="main-header-container container-fluid">
           <div className="header-content-left">
             <div className="header-element">
-              <div className="horizontal-logo">
-                <Link
+              <div className="horizontal-logo buyNow mt-2 mb-2 " >
+                {/* <Link
                   to={`${import.meta.env.BASE_URL}dashboards/crm/`}
                   className="header-logo"
                 >
-                  <img src={desktoplogo} alt="logo" className="desktop-logo" />
-                  <img src={togglelogo} alt="logo" className="toggle-logo" />
-                  <img src={desktopdark} alt="logo" className="desktop-dark" />
-                  <img src={toggledark} alt="logo" className="toggle-dark" />
+                  <img src={drodin} alt="logo" className="desktop-logo" />
+                  <img src={drodin} alt="logo" className="toggle-logo" />
+                  <img src={drodin} alt="logo" className="desktop-dark" />
+                  <img src={drodin} alt="logo" className="toggle-dark" />
                   <img
-                    src={desktopwhite}
+                    src={drodin}
                     alt="logo"
                     className="desktop-white"
                   />
-                  <img src={togglewhite} alt="logo" className="toggle-white" />
-                </Link>
+                  <img src={drodin} alt="logo" className="toggle-white" />
+                </Link> */}
               </div>
             </div>
             <div className="header-element">
@@ -478,7 +470,7 @@ const Header = ({ local_varaiable, ThemeChanger }: any) => {
             </div>
           </div>
 
-          <div className="header-content-right">
+          {/* <div className="header-content-right">
             <div className="header-element header-search">
               <Link
                 to="#"
@@ -1059,7 +1051,7 @@ const Header = ({ local_varaiable, ThemeChanger }: any) => {
                 <i className="bx bx-cog header-link-icon"></i>
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </header>
       <Modal

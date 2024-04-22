@@ -1,12 +1,12 @@
 import { Fragment, useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { MENUITEMS } from "./sidemenu/sidemenu";
-import logo1 from "../../../assets/images/brand-logos/desktop-logo.png";
-import logo2 from "../../../assets/images/brand-logos/toggle-logo.png";
-import logo3 from "../../../assets/images/brand-logos/desktop-dark.png";
-import logo4 from "../../../assets/images/brand-logos/toggle-dark.png";
-import logo5 from "../../../assets/images/brand-logos/desktop-white.png";
-import logo6 from "../../../assets/images/brand-logos/toggle-white.png";
+// import logo1 from "../../../assets/images/brand-logos/desktop-logo.png";
+// import logo2 from "../../../assets/images/brand-logos/toggle-logo.png";
+// import logo3 from "../../../assets/images/brand-logos/desktop-dark.png";
+// import logo4 from "../../../assets/images/brand-logos/toggle-dark.png";
+// import logo5 from "../../../assets/images/brand-logos/desktop-white.png";
+// import logo6 from "../../../assets/images/brand-logos/toggle-white.png";
 import RSC from "react-scrollbars-custom";
 import { connect } from "react-redux";
 import { ThemeChanger } from "../../../redux/action";
@@ -214,7 +214,7 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
         if (mainlevel.Items) {
           mainlevel.Items.filter((items: any) => {
             if (
-              ulRef.current.href != document.location["href"] ||
+              ulRef.current?.href != document.location["href"] ||
               localStorage.ynexverticalstyles != "doublemenu"
             ) {
               items.active = false;
@@ -222,7 +222,7 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
             items.selected = false;
 
             if (dd === "/test/ynex-ts/preview") {
-              dd = "/dashboards/crm/";
+              dd = "/tweets/tweets/";
             }
             if (dd === items.path + "/") {
               items.active = true;
@@ -524,11 +524,14 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
       <div id="responsive-overlay" onClick={() => menuClose()}></div>
       <aside
         className="app-sidebar sticky"
+        style={{
+          background: "#238AE6",
+        }}
         id="sidebar"
         onMouseEnter={() => Onhover()}
         onMouseLeave={() => Outhover()}
       >
-        <div className="main-sidebar-header">
+        {/* <div className="main-sidebar-header">
           <Link
             to={`${import.meta.env.BASE_URL}dashboards/crm/`}
             className="header-logo"
@@ -540,9 +543,9 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
             <img src={logo5} alt="logo" className="desktop-white" />
             <img src={logo6} alt="logo" className="toggle-white" />
           </Link>
-        </div>
+        </div> */}
 
-        <div className="main-sidebar" id="sidebar-scroll">
+        <div className="main-sidebar bgcolor" id="sidebar-scroll">
           <RSC style={{ width: "100%", height: "100vh" }} noScrollX={false}>
             <nav className="main-menu-container nav nav-pills flex-column sub-open">
               <div className="slide-left" id="slide-left">

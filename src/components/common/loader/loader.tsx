@@ -1,5 +1,5 @@
 // import { useEffect } from 'react';
-import loader from '../../../assets/images/media/loader.svg';
+import spinner from '../../../assets/images/media/spinner.svg';
 const Loader = () => {
     // useEffect(() => {
     //   console.log("Working");
@@ -7,8 +7,8 @@ const Loader = () => {
     // });
     
     return (
-        <div id="loader">
-            <img src={loader} className="loader-img" alt="Loader" />
+        <div id="loader" className=''>
+            <img src={spinner} className="" alt="Loader" />
         </div>
     );
 };
