@@ -75,7 +75,6 @@ const Tweet: FC<TweetProps> = () => {
                     From Date
                     <InputGroup className="">
                       <InputGroup.Text className="input-group-text text-muted">
-                        {" "}
                         <i className="ri-calendar-line"></i>
                       </InputGroup.Text>
                       <DatePicker
@@ -90,7 +89,6 @@ const Tweet: FC<TweetProps> = () => {
                     To Date
                     <InputGroup className="">
                       <InputGroup.Text className="input-group-text text-muted">
-                        {" "}
                         <i className="ri-calendar-line"></i>
                       </InputGroup.Text>
                       <DatePicker

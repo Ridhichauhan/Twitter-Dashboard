@@ -84,7 +84,6 @@ const Jobpost: FC<JobpostProps> = () => {
                     From Date
                     <InputGroup className="">
                       <InputGroup.Text className="input-group-text text-muted">
-                        {" "}
                         <i className="ri-calendar-line"></i>
                       </InputGroup.Text>
                       <DatePicker
@@ -99,7 +98,6 @@ const Jobpost: FC<JobpostProps> = () => {
                     To Date
                     <InputGroup className="">
                       <InputGroup.Text className="input-group-text text-muted">
-                        {" "}
                         <i className="ri-calendar-line"></i>
                       </InputGroup.Text>
                       <DatePicker

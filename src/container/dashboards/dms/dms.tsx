@@ -71,7 +71,7 @@ const Jobs = () => {
                       <DatePicker
                         selected={startDate}
                         onChange={handleDateChange}
-                        dateFormat="yyyy/MM/dd h:mm aa"
+                        dateFormat="yyyy/MM/dd"
                       />
                     </InputGroup>
                   </div>
@@ -84,7 +84,7 @@ const Jobs = () => {
                       <DatePicker
                         selected={startDate1}
                         onChange={handleDateChange1}
-                        dateFormat="yyyy/MM/dd h:mm aa"
+                        dateFormat="yyyy/MM/dd"
                       />
                     </InputGroup>
                   </div>
