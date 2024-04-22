@@ -13,7 +13,6 @@ const Jobpost: FC<JobpostProps> = () => {
   const [tweets, setTweets] = useState<any[]>([]);
   console.log("object,", tweets);
   const [page, setPage] = useState(1);
-
   const [loader, setLoader] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const authToken =
@@ -65,6 +64,7 @@ const Jobpost: FC<JobpostProps> = () => {
   const paginate = (pageNumber: number) => {
     console.log("Clicked page:", pageNumber);
     setCurrentPage(pageNumber);
+    paginate;
   };
   console.log("Current page:", currentPage);
   console.log("Total tweets:", tweets.length);
@@ -230,15 +230,13 @@ const Jobpost: FC<JobpostProps> = () => {
                       onClick={() => {
                         setPage(page - 1);
                       }}
-                      disabled={page === 1}
-                    >
+                      disabled={page === 1}>
                       Previous
                     </Pagination.Item>
                     <div
                       aria-current="page"
                       className="p-2 text-white"
-                      style={{ background: "#238ae6" }}
-                    >
+                      style={{ background: "#238ae6" }}>
                       {page}
                     </div>
                     <Pagination.Item

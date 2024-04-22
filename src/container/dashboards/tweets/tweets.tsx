@@ -127,7 +127,7 @@ const Tweets: FC<TweetsProps> = () => {
                   </Card.Header>
                   <Card.Body>
                     <p className="fw-semibold mb-1 fs-16">
-                      {tweets?.totalRecivedTweets}
+                      {(tweets as any)?.totalRecivedTweets}
                     </p>
                     <p className="text-muted mb-3">Time Stamp Data</p>
                   </Card.Body>
@@ -147,7 +147,7 @@ const Tweets: FC<TweetsProps> = () => {
                   </Card.Header>
                   <Card.Body>
                     <p className="fw-semibold mb-1 fs-16">
-                      {tweets?.totalAckTweets}
+                      {(tweets as any)?.totalAckTweets}
                     </p>
                     <p className="text-muted mb-3">Time Stamp Data</p>
                   </Card.Body>
@@ -167,7 +167,7 @@ const Tweets: FC<TweetsProps> = () => {
                   </Card.Header>
                   <Card.Body>
                     <p className="fw-semibold mb-1 fs-16">
-                      {tweets?.totalUnAckTweets}
+                      {(tweets as any)?.totalUnAckTweets}
                     </p>
                     <p className="text-muted mb-3">Time Stamp Data</p>
                   </Card.Body>
@@ -187,7 +187,7 @@ const Tweets: FC<TweetsProps> = () => {
                   </Card.Header>
                   <Card.Body>
                     <p className="fw-semibold mb-1 fs-16">
-                      {tweets?.totalSentTweets}
+                      {(tweets as any)?.totalSentTweets}
                     </p>
                     <p className="text-muted mb-3">Time Stamp Data</p>
                   </Card.Body>
@@ -207,7 +207,7 @@ const Tweets: FC<TweetsProps> = () => {
                   </Card.Header>
                   <Card.Body>
                     <p className="fw-semibold mb-1 fs-16">
-                      {tweets?.totalUnSentTweets}
+                      {(tweets as any)?.totalUnSentTweets}
                     </p>
                     <p className="text-muted mb-3">Time Stamp Data</p>
                   </Card.Body>
