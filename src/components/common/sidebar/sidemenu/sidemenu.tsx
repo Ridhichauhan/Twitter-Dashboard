@@ -19,13 +19,13 @@ export const MENUITEMS = [
             selected: false,
             title: "TWEETS",
           },
-          {
-            path: `${import.meta.env.BASE_URL}dms/dms`,
-            type: "link",
-            active: false,
-            selected: false,
-            title: "DMS",
-          },
+          // {
+          //   path: `${import.meta.env.BASE_URL}dms/dms`,
+          //   type: "link",
+          //   active: false,
+          //   selected: false,
+          //   title: "DMS",
+          // },
           {
             path: `${import.meta.env.BASE_URL}tweet/tweet`,
             type: "link",
@@ -33,13 +33,13 @@ export const MENUITEMS = [
             selected: false,
             title: "TWEET",
           },
-          {
-            path: `${import.meta.env.BASE_URL}dm/dm`,
-            type: "link",
-            active: false,
-            selected: false,
-            title: "DM",
-          },
+          // {
+          //   path: `${import.meta.env.BASE_URL}dm/dm`,
+          //   type: "link",
+          //   active: false,
+          //   selected: false,
+          //   title: "DM",
+          // },
           {
             path: `${import.meta.env.BASE_URL}alert/alert`,
             type: "link",
