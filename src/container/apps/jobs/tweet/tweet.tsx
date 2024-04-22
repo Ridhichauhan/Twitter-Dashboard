@@ -66,7 +66,7 @@ const Tweet: FC<TweetProps> = () => {
       <Row>
         <Col xl={12}>
           <Card className="custom-card">
-            <Card.Body className="">
+            <Card.Body className="">    
               <div className="d-flex align-items-center justify-content-between flex-wrap">
                 <div className="d-flex flex-wrap gap-1">
                   <h1 className="fs-6 fw-bold">Tweet</h1>
