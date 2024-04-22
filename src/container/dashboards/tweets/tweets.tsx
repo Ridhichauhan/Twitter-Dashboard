@@ -4,15 +4,11 @@ import DatePicker from "react-datepicker";
 import axios from "axios";
 import Loader from "../../../components/common/loader/loader";
 interface TweetsProps {
-  totalRecivedTweets: any;
-  totalAckTweets: number;
 }
-
 const Tweets: FC<TweetsProps> = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const [startDate1, setStartDate1] = useState(new Date());
+  const [startDate1,setStartDate1] = useState(new Date());
   const [tweets, setTweets] = useState<any[]>([]);
-  
   const [loader, setLoader] = useState(false);
   const authToken = "eyJhbGciOiJIUzI1NiJ9.NjQyZWE3OTlmNWFlZDRkYjljM2Y0ZGNk.awn0t67fZapAxQLIs9NmdPWHklkT4gL3uaVmCZuTpX4";
   useEffect(() => {
@@ -70,7 +66,6 @@ const Tweets: FC<TweetsProps> = () => {
                     From Date
                     <InputGroup className="">
                       <InputGroup.Text className="input-group-text text-muted">
-                        {" "}
                         <i className="ri-calendar-line"></i>
                       </InputGroup.Text>
                       <DatePicker
