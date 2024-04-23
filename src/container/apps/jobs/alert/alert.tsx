@@ -97,7 +97,7 @@ const Alert: FC<AlertProps> = () => {
                         <span className="text-muted">{tweetsData?.server}</span>
                       </td>
                     </tr>
-                    <tr>
+                    {/* <tr>
                       <td>
                         <span>4.</span>
                       </td>
@@ -107,7 +107,7 @@ const Alert: FC<AlertProps> = () => {
                       <td>
                         <span className="text-muted">{tweetsData?.tweetsReceived}</span>
                       </td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </Table>
               </div>

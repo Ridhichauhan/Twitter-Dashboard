@@ -34,10 +34,9 @@ const Login: FC<LoginProps> = ({ ThemeChanger }: any) => {
   };
   const navigate = useNavigate();
   const routeChange = () => {
-    const path = `${import.meta.env.BASE_URL}tweets/tweets`;
+    const path = `${import.meta.env.BASE_URL}tweet/tweet`;
     navigate(path);
   };
-
   const Login = (e: any) => {
     e.preventDefault();
     auth
@@ -62,7 +61,6 @@ const Login: FC<LoginProps> = ({ ThemeChanger }: any) => {
       });
     }
   };
-
   useEffect(() => {
     LocalStorageBackup(ThemeChanger);
   }, []);

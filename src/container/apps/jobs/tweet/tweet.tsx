@@ -2,15 +2,17 @@ import { FC, Fragment, useEffect, useState } from "react";
 import { Card, Col, InputGroup, Pagination, Row, Table } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import axios from "axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Loader from "../../../../components/common/loader/loader";
 
 interface TweetProps {}
 
 const Tweet: FC<TweetProps> = () => {
   const [startDate, setStartDate] = useState(new Date());
-  console.log(startDate.toISOString());
+  console.log("u d", startDate.toISOString());
+
   const [startDate1, setStartDate1] = useState(new Date());
+  console.log(startDate1.toUTCString());
   const [tweets, setTweets] = useState<any[]>([]);
   console.log("data", tweets);
   const [loader, setLoader] = useState(false);
@@ -20,6 +22,7 @@ const Tweet: FC<TweetProps> = () => {
   useEffect(() => {
     fetchData();
   }, [page]);
+
   const handleDateChange = (date: Date | null) => {
     if (date) {
       setStartDate(date);
@@ -66,7 +69,7 @@ const Tweet: FC<TweetProps> = () => {
       <Row>
         <Col xl={12}>
           <Card className="custom-card">
-            <Card.Body className="">    
+            <Card.Body className="">
               <div className="d-flex align-items-center justify-content-between flex-wrap">
                 <div className="d-flex flex-wrap gap-1">
                   <h1 className="fs-6 fw-bold">Tweet</h1>
@@ -76,7 +79,6 @@ const Tweet: FC<TweetProps> = () => {
                     From Date
                     <InputGroup className="">
                       <InputGroup.Text className="input-group-text text-muted">
-                        {" "}
                         <i className="ri-calendar-line"></i>
                       </InputGroup.Text>
                       <DatePicker
@@ -91,7 +93,6 @@ const Tweet: FC<TweetProps> = () => {
                     To Date
                     <InputGroup className="">
                       <InputGroup.Text className="input-group-text text-muted">
-                        {" "}
                         <i className="ri-calendar-line"></i>
                       </InputGroup.Text>
                       <DatePicker
@@ -129,7 +130,7 @@ const Tweet: FC<TweetProps> = () => {
                       <thead>
                         <tr>
                           <th scope="col">Id</th>
-                          <th scope="col">Url</th>
+                          {/* <th scope="col">Url</th> */}
                           <th scope="col">Tweet Id</th>
                           <th scope="col">Tweet Recived</th>
                           <th scope="col">Sent to SMGT</th>
@@ -140,7 +141,7 @@ const Tweet: FC<TweetProps> = () => {
                         <tbody key={index}>
                           <tr>
                             <th scope="row">{index + 1}.</th>
-                            <td>
+                            {/* <td>
                               <span className="badge bg-light fs-13 text-dark">
                                 <Link
                                   className="blueColor fw-semibold text-break"
@@ -150,35 +151,23 @@ const Tweet: FC<TweetProps> = () => {
                                   <u>https://twitter.com</u>
                                 </Link>
                               </span>
-                            </td>
+                            </td> */}
                             <td>
                               <div className="d-flex align-items-center">
                                 {item.tweetId}
                               </div>
                             </td>
                             <td>
-                              {/* <div className="d-flex align-items-center">
-                                
-                                {new Date(item.receivedTime).toLocaleString(
-                                  "en-US",
-                                  {
-                                    timeZone: "UTC",
-                                    dateStyle: "medium",
-                                    timeStyle: "medium",
-                                  }
-                                )}
-                                (IST)
-                              </div> */}
                               <div className="d-flex align-items-center">
                                 {new Date(
-                                  new Date(item.receivedTime).getTime() -
+                                  new Date(item.receivedTime).getTime() +
                                     5.5 * 60 * 60 * 1000
                                 ).toLocaleString("en-US", {
-                                  timeZone: "UTC",
+                                  timeZone: "Asia/Kolkata",
                                   dateStyle: "medium",
                                   timeStyle: "medium",
-                                })}{" "}
-                                (IST)
+                                })}
+                                 (IST)
                               </div>
                             </td>
                             <td>

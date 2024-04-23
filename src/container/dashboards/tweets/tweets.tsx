@@ -3,14 +3,14 @@ import { Card, Col, InputGroup, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import Loader from "../../../components/common/loader/loader";
-interface TweetsProps {
-}
+interface TweetsProps {}
 const Tweets: FC<TweetsProps> = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const [startDate1,setStartDate1] = useState(new Date());
+  const [startDate1, setStartDate1] = useState(new Date());
   const [tweets, setTweets] = useState<any[]>([]);
   const [loader, setLoader] = useState(false);
-  const authToken = "eyJhbGciOiJIUzI1NiJ9.NjQyZWE3OTlmNWFlZDRkYjljM2Y0ZGNk.awn0t67fZapAxQLIs9NmdPWHklkT4gL3uaVmCZuTpX4";
+  const authToken =
+    "eyJhbGciOiJIUzI1NiJ9.NjQyZWE3OTlmNWFlZDRkYjljM2Y0ZGNk.awn0t67fZapAxQLIs9NmdPWHklkT4gL3uaVmCZuTpX4";
   useEffect(() => {
     fetchData();
   }, []);
@@ -24,7 +24,7 @@ const Tweets: FC<TweetsProps> = () => {
       setStartDate1(date);
     }
   };
-  const fetchData = async () => { 
+  const fetchData = async () => {
     setLoader(true);
     const data = {
       fromDate: startDate.toISOString().slice(0, 10),
@@ -40,9 +40,9 @@ const Tweets: FC<TweetsProps> = () => {
           },
         }
       );
+      console.log(response);
       setTweets(response?.data?.STATUS_RESPONSE);
-    } 
-    catch (error) {
+    } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
       setLoader(false);
@@ -104,7 +104,7 @@ const Tweets: FC<TweetsProps> = () => {
         <Col>
           {loader ? (
             <div className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center">
-            {<Loader/>}
+              {<Loader />}
             </div>
           ) : (
             <Row>
