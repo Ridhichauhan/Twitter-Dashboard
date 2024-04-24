@@ -26,3 +26,10 @@
 .blueColor{
     color: #238ae6;
 }
+.react-datepicker__day--disabled {
+    cursor: not-allowed !important;
+  }
+  
+  .react-datepicker__day--disabled:hover {
+    background-color: transparent !important;
+  }

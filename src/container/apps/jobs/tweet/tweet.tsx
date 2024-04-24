@@ -9,12 +9,9 @@ interface TweetProps {}
 
 const Tweet: FC<TweetProps> = () => {
   const [startDate, setStartDate] = useState(new Date());
-  console.log("u d", startDate.toISOString());
-
   const [startDate1, setStartDate1] = useState(new Date());
   console.log(startDate1.toUTCString());
   const [tweets, setTweets] = useState<any[]>([]);
-  console.log("data", tweets);
   const [loader, setLoader] = useState(false);
   const [page, setPage] = useState(1);
   const authToken =
@@ -26,11 +23,13 @@ const Tweet: FC<TweetProps> = () => {
   const handleDateChange = (date: Date | null) => {
     if (date) {
       setStartDate(date);
+      setPage(1);
     }
   };
   const handleDateChange1 = (date: Date | null) => {
     if (date) {
       setStartDate1(date);
+      setPage(1);
     }
   };
   const fetchData = async () => {
@@ -41,7 +40,7 @@ const Tweet: FC<TweetProps> = () => {
     setLoader(true);
     try {
       const response = await axios.get(
-        `https://loudfolderstaging.com/getTweetsDetailsForDateRange?page=${page}`,
+        `https://loudfolder.com/getTweetsDetailsForDateRange?page=${page}`,
         {
           params: {
             startDate: startDate.toISOString(),
@@ -52,8 +51,16 @@ const Tweet: FC<TweetProps> = () => {
           },
         }
       );
+      const sortedTweets = response?.data?.data?.tweetsDataToReturn.sort(
+        (a: any, b: any) => {
+          return (
+            new Date(a.receivedTime).getTime() -
+            new Date(b.receivedTime).getTime()
+          );
+        }
+      );
+      setTweets(sortedTweets);
       console.log(response);
-      setTweets(response?.data?.data?.tweetsDataToReturn);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -65,7 +72,6 @@ const Tweet: FC<TweetProps> = () => {
       <Col>
         <Card.Header className="p-3"></Card.Header>
       </Col>
-
       <Row>
         <Col xl={12}>
           <Card className="custom-card">
@@ -86,6 +92,8 @@ const Tweet: FC<TweetProps> = () => {
                         onChange={handleDateChange}
                         dateFormat="yyyy/MM/dd h:mm aa"
                         showTimeInput
+                        minDate={new Date(2024, 3, 23)}
+                        className="form-control"
                       />
                     </InputGroup>
                   </div>
@@ -100,6 +108,8 @@ const Tweet: FC<TweetProps> = () => {
                         onChange={handleDateChange1}
                         showTimeInput
                         dateFormat="yyyy/MM/dd h:mm aa"
+                        minDate={new Date(2024, 3, 23)}
+                        className="form-control"
                       />
                     </InputGroup>
                   </div>
@@ -125,7 +135,7 @@ const Tweet: FC<TweetProps> = () => {
                   <div className="table-responsive">
                     <Table
                       bordered
-                      className="table text-nowrap  border-primary"
+                      className="table text-nowrap border-primary"
                     >
                       <thead>
                         <tr>
@@ -159,15 +169,13 @@ const Tweet: FC<TweetProps> = () => {
                             </td>
                             <td>
                               <div className="d-flex align-items-center">
-                                {new Date(
-                                  new Date(item.receivedTime).getTime() +
-                                    5.5 * 60 * 60 * 1000
-                                ).toLocaleString("en-US", {
-                                  timeZone: "Asia/Kolkata",
-                                  dateStyle: "medium",
-                                  timeStyle: "medium",
-                                })}
-                                 (IST)
+                                {new Date(item.receivedTime).toLocaleString(
+                                  "en-IN",
+                                  {
+                                    timeZone: "Asia/Kolkata",
+                                    hour12: true,
+                                  }
+                                )}
                               </div>
                             </td>
                             <td>

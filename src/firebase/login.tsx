@@ -34,7 +34,7 @@ const Login: FC<LoginProps> = ({ ThemeChanger }: any) => {
   };
   const navigate = useNavigate();
   const routeChange = () => {
-    const path = `${import.meta.env.BASE_URL}tweet/tweet`;
+    const path = `${import.meta.env.BASE_URL}tweets/tweets`;
     navigate(path);
   };
   const Login = (e: any) => {

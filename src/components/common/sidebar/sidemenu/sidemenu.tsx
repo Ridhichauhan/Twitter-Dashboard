@@ -13,6 +13,13 @@ export const MENUITEMS = [
         class: "badge bg-warning-transparent ms-2",
         children: [
           {
+            path: `${import.meta.env.BASE_URL}tweets/tweets`,
+            type: "link",
+            active: false,
+            selected: false,
+            title: "TWEETS",
+          },
+          {
             path: `${import.meta.env.BASE_URL}tweet/tweet`,
             type: "link",
             active: false,

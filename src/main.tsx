@@ -12,6 +12,7 @@ import Loader from './components/common/loader/loader.tsx';
 import Tweet from './container/apps/jobs/tweet/tweet.tsx';
 // import Dm from './container/apps/jobs/dm/dm.tsx';
 import Alert from './container/apps/jobs/alert/alert.tsx';
+import Tweets from './container/dashboards/tweets/tweets.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.Fragment>
@@ -24,7 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path={`${import.meta.env.BASE_URL}firebase/signup`} element={<Signup />}/>
         </Route>
           <Route path={`${import.meta.env.BASE_URL}`} element={<App/>}>
-          {/* <Route path={`${import.meta.env.BASE_URL}tweets/tweets`} element={<Tweets/>} />    */}
+          <Route path={`${import.meta.env.BASE_URL}tweets/tweets`} element={<Tweets/>} />   
           {/* <Route path={`${import.meta.env.BASE_URL}dms/dms`} element={<DMS/>} />   */}
           <Route path={`${import.meta.env.BASE_URL}tweet/tweet`} element={<Tweet/>} /> 
           {/* <Route path={`${import.meta.env.BASE_URL}dm/dm`} element={<Dm/>} />    */}

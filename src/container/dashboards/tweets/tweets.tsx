@@ -72,6 +72,7 @@ const Tweets: FC<TweetsProps> = () => {
                         selected={startDate}
                         onChange={handleDateChange}
                         dateFormat="yyyy/MM/dd"
+                        minDate={new Date(2024, 3, 23)}
                       />
                     </InputGroup>
                   </div>
@@ -86,6 +87,7 @@ const Tweets: FC<TweetsProps> = () => {
                         selected={startDate1}
                         onChange={handleDateChange1}
                         dateFormat="yyyy/MM/dd"
+                        minDate={new Date(2024, 3, 23)}
                       />
                     </InputGroup>
                   </div>

@@ -74,7 +74,6 @@ const Alert: FC<AlertProps> = () => {
                       </td>
                       <td className="text-muted">{tweetsData?.APIs}</td>
                     </tr>
-
                     <tr>
                       <td>
                         <span>2.</span>
