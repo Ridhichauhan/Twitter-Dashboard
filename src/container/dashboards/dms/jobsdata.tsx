@@ -1,3 +1,4 @@
+/*eslint linebreak-style: ["error", "windows"]*/
 import  { Component } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { ApexOptions } from "apexcharts";
@@ -15,6 +16,7 @@ import companylogo8 from "../../../assets/images/company-logos/8.png";
 import companylogo10 from "../../../assets/images/company-logos/10.png";
 import companylogo1 from "../../../assets/images/company-logos/1.png";
 import companylogo4 from "../../../assets/images/company-logos/4.png";
+
 // 
 interface spark3 {
     options?: ApexOptions,

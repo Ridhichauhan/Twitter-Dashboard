@@ -1,3 +1,4 @@
+/*eslint linebreak-style: ["error", "windows"]*/
 import { FC, Fragment, useEffect, useState } from "react";
 import { Card, Col, InputGroup, Pagination, Row, Table } from "react-bootstrap";
 import DatePicker from "react-datepicker";
@@ -19,15 +20,23 @@ const Tweet: FC<TweetProps> = () => {
   useEffect(() => {
     fetchData();
   }, [page]);
-
-  const handleDateChange = (date: Date | null) => {
+  const handleDateChange = (date: Date | null) => { 
     if (date) {
+      if (date < new Date('2024-04-23')) {
+        alert("Please select your date from April 23, 2024!");
+        return;
+      }
       setStartDate(date);
       setPage(1);
     }
   };
+  
   const handleDateChange1 = (date: Date | null) => {
     if (date) {
+      if (date < new Date('2024-04-23')) {
+        alert("Please select your date from April 23, 2024!");
+        return;
+      }
       setStartDate1(date);
       setPage(1);
     }
@@ -92,7 +101,7 @@ const Tweet: FC<TweetProps> = () => {
                         onChange={handleDateChange}
                         dateFormat="yyyy/MM/dd h:mm aa"
                         showTimeInput
-                        minDate={new Date(2024, 3, 23)}
+                        
                         className="form-control"
                       />
                     </InputGroup>
@@ -108,7 +117,7 @@ const Tweet: FC<TweetProps> = () => {
                         onChange={handleDateChange1}
                         showTimeInput
                         dateFormat="yyyy/MM/dd h:mm aa"
-                        minDate={new Date(2024, 3, 23)}
+                      
                         className="form-control"
                       />
                     </InputGroup>
