@@ -12,23 +12,19 @@ import TabToTop from "../components/common/tabtotop/tabtotop";
 
 function App() {
   const [MyclassName, setMyClass] = useState("");
-
   const Bodyclickk = () => {
     if (localStorage.getItem("ynexverticalstyles") == "icontext") {
       setMyClass("");
     }
   };
-
   const [isLoading, setIsLoading] = useState(
     localStorage.ynexloaderdisable != "disable"
   );
-
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 300);
   }, []);
-
   return (
     <Fragment>
       {isLoading && <Loader></Loader>}

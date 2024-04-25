@@ -93,39 +93,39 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
               if (item === sublevel) {
                 sublevel.active = true;
               }
-              if (sublevel.children) {
-                sublevel.children.map((sublevel1: any) => {
-                  sublevel1.active = false;
-                  if (item === sublevel1) {
-                    sublevel.active = true;
-                    sublevel1.active = true;
-                  }
-                  if (sublevel1.children) {
-                    sublevel1.children.map((sublevel2: any) => {
-                      sublevel2.active = false;
-                      if (item === sublevel2) {
-                        sublevel.active = true;
-                        sublevel1.active = true;
-                        sublevel2.active = true;
-                      }
-                      if (sublevel2.children) {
-                        sublevel2.children.map((sublevel3: any) => {
-                          sublevel3.active = false;
-                          if (item === sublevel3) {
-                            sublevel.active = true;
-                            sublevel1.active = true;
-                            sublevel2.active = true;
-                            sublevel3.active = true;
-                          }
-                          return sublevel2;
-                        });
-                      }
-                      return sublevel2;
-                    });
-                  }
-                  return sublevel1;
-                });
-              }
+              // if (sublevel.children) {
+              //   sublevel.children.map((sublevel1: any) => {
+              //     sublevel1.active = false;
+              //     if (item === sublevel1) {
+              //       sublevel.active = true;
+              //       sublevel1.active = true;
+              //     }
+              //     if (sublevel1.children) {
+              //       sublevel1.children.map((sublevel2: any) => {
+              //         sublevel2.active = false;
+              //         if (item === sublevel2) {
+              //           sublevel.active = true;
+              //           sublevel1.active = true;
+              //           sublevel2.active = true;
+              //         }
+              //         if (sublevel2.children) {
+              //           sublevel2.children.map((sublevel3: any) => {
+              //             sublevel3.active = false;
+              //             if (item === sublevel3) {
+              //               sublevel.active = true;
+              //               sublevel1.active = true;
+              //               sublevel2.active = true;
+              //               sublevel3.active = true;
+              //             }
+              //             return sublevel2;
+              //           });
+              //         }
+              //         return sublevel2;
+              //       });
+              //     }
+              //     return sublevel1;
+              //   });
+              // }
               return sublevel;
             });
           }
@@ -567,7 +567,7 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
               <ul className="main-menu" style={{ marginRight: "0px" }}>
                 {MENUITEMS.map((levelone) => (
                   <Fragment key={Math.random()}>
-                    {levelone.menutitle ? (
+                    {/* {levelone.menutitle ? (
                       <li className="slide__category">
                         <span className="category-name">
                           {levelone.menutitle}
@@ -575,7 +575,7 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
                       </li>
                     ) : (
                       ""
-                    )}
+                    )} */}
                     {levelone.Items.map((leveltwo: any) =>
                       leveltwo.type === "link" ? (
                         <li

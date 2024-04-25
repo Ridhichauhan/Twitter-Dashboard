@@ -1,40 +1,48 @@
-/*eslint linebreak-style: ["error", "windows"]*/
 import { FC, Fragment, useEffect, useState } from "react";
-import { Card, Col, InputGroup, Pagination, Row, Table } from "react-bootstrap";
+import {
+  Card,
+  Col,
+  InputGroup,
+  Pagination,
+  Row,
+  Table,
+  Toast,
+  ToastContainer,
+} from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 // import { Link } from "react-router-dom";
 import Loader from "../../../../components/common/loader/loader";
+import twitter from "../../../../assets/images/media/twiiter.png";
 
 interface TweetProps {}
 
 const Tweet: FC<TweetProps> = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [startDate1, setStartDate1] = useState(new Date());
-  console.log(startDate1.toUTCString());
   const [tweets, setTweets] = useState<any[]>([]);
   const [loader, setLoader] = useState(false);
   const [page, setPage] = useState(1);
+  const [showToast, setShowToast] = useState(false);
   const authToken =
     "eyJhbGciOiJIUzI1NiJ9.MTU1MjI1ODE1NTA4MTQ1MzU2OA.lTui2zIUqqskGj5K4keIId0f-SRCQpUuH7zapOJ0_GI";
   useEffect(() => {
     fetchData();
   }, [page]);
-  const handleDateChange = (date: Date | null) => { 
+  const handleDateChange = (date: Date | null) => {
     if (date) {
-      if (date < new Date('2024-04-23')) {
-        alert("Please select your date from April 23, 2024!");
+      if (date < new Date("2024-04-23")) {
+        setShowToast(true);
         return;
       }
       setStartDate(date);
       setPage(1);
     }
   };
-  
   const handleDateChange1 = (date: Date | null) => {
     if (date) {
-      if (date < new Date('2024-04-23')) {
-        alert("Please select your date from April 23, 2024!");
+      if (date < new Date("2024-04-23")) {
+        setShowToast(true);
         return;
       }
       setStartDate1(date);
@@ -78,8 +86,30 @@ const Tweet: FC<TweetProps> = () => {
 
   return (
     <Fragment>
+      <ToastContainer className="toast-container position-fixed top-0 end-0 p-3">
+        <Toast
+          id="topright-Toast"
+          className="toast colored-toast bg-primary-transparent text-primary"
+          onClose={() => setShowToast(false)}
+          show={showToast}
+          // delay={3000}
+          // autohide
+        >
+          <Toast.Header className="toast-header bgColor text-fixed-white">
+            <img
+              className="bd-placeholder-img rounded me-2"
+              src={twitter}
+              alt="..."
+            />
+            <strong className="me-auto">Twitter Dashboard</strong>
+          </Toast.Header>
+          <Toast.Body className="toast-body blueColor">
+            Please select your date on and after 23 April 2024.
+          </Toast.Body>
+        </Toast>
+      </ToastContainer>
       <Col>
-        <Card.Header className="p-3"></Card.Header>
+        <Card.Header className="p-4 g-3"></Card.Header>
       </Col>
       <Row>
         <Col xl={12}>
@@ -101,7 +131,6 @@ const Tweet: FC<TweetProps> = () => {
                         onChange={handleDateChange}
                         dateFormat="yyyy/MM/dd h:mm aa"
                         showTimeInput
-                        
                         className="form-control"
                       />
                     </InputGroup>
@@ -117,7 +146,6 @@ const Tweet: FC<TweetProps> = () => {
                         onChange={handleDateChange1}
                         showTimeInput
                         dateFormat="yyyy/MM/dd h:mm aa"
-                      
                         className="form-control"
                       />
                     </InputGroup>
@@ -157,9 +185,9 @@ const Tweet: FC<TweetProps> = () => {
                         </tr>
                       </thead>
                       {tweets?.map((item: any, index: number) => (
-                        <tbody key={index}>
+                        <tbody key={index + (page - 1) * 10}>
                           <tr>
-                            <th scope="row">{index + 1}.</th>
+                            <th scope="row">{index + 1 + (page - 1) * 10}.</th>
                             {/* <td>
                               <span className="badge bg-light fs-13 text-dark">
                                 <Link

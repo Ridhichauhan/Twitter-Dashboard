@@ -1,4 +1,3 @@
-/*eslint linebreak-style: ["error", "windows"]*/
 import  { Component } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { ApexOptions } from "apexcharts";

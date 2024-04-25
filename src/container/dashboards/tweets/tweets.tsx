@@ -1,15 +1,24 @@
-/*eslint linebreak-style: ["error", "windows"]*/
 import { FC, Fragment, useEffect, useState } from "react";
-import { Card, Col, InputGroup, Row } from "react-bootstrap";
+import {
+  Card,
+  Col,
+  InputGroup,
+  Row,
+  Toast,
+  ToastContainer,
+} from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import Loader from "../../../components/common/loader/loader";
+import twitter from "../../../assets/images/media/twiiter.png";
+
 interface TweetsProps {}
 const Tweets: FC<TweetsProps> = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [startDate1, setStartDate1] = useState(new Date());
   const [tweets, setTweets] = useState<any[]>([]);
   const [loader, setLoader] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const authToken =
     "eyJhbGciOiJIUzI1NiJ9.NjQyZWE3OTlmNWFlZDRkYjljM2Y0ZGNk.awn0t67fZapAxQLIs9NmdPWHklkT4gL3uaVmCZuTpX4";
   useEffect(() => {
@@ -17,8 +26,8 @@ const Tweets: FC<TweetsProps> = () => {
   }, []);
   const handleDateChange = (date: Date | null) => {
     if (date) {
-      if (date < new Date('2024-04-23')) {
-        alert("Please select your date from April 23, 2024!");
+      if (date < new Date("2024-04-23")) {
+        setShowToast(true);
         return;
       }
       setStartDate(date);
@@ -26,8 +35,8 @@ const Tweets: FC<TweetsProps> = () => {
   };
   const handleDateChange1 = (date: Date | null) => {
     if (date) {
-      if (date < new Date('2024-04-23')) {
-        alert("Please select your date from April 23, 2024!");
+      if (date < new Date("2024-04-23")) {
+        setShowToast(true);
         return;
       }
       setStartDate1(date);
@@ -59,9 +68,31 @@ const Tweets: FC<TweetsProps> = () => {
   };
   return (
     <Fragment>
+      <ToastContainer className="toast-container position-fixed top-0 end-0 p-3">
+        <Toast
+          id="topright-Toast"
+          className="toast colored-toast bg-primary-transparent text-primary"
+          onClose={() => setShowToast(false)}
+          show={showToast}
+          // delay={3000}
+          // autohide
+        >
+          <Toast.Header className="toast-header bgColor text-fixed-white">
+            <img
+              className="bd-placeholder-img rounded me-2"
+              src={twitter}
+              alt="..."
+            />
+            <strong className="me-auto">Twitter Dashboard</strong>
+          </Toast.Header>
+          <Toast.Body className="toast-body blueColor">
+            Please select your date on and after 23 April 2024.
+          </Toast.Body>
+        </Toast>
+      </ToastContainer>
       <Row>
         <Col>
-          <Card.Header className="d-flex align-items-center justify-content-between flex-wrap gap-3  p-3"></Card.Header>
+          <Card.Header className="d-flex align-items-center justify-content-between flex-wrap gap-3 p-4"></Card.Header>
         </Col>
         <Col xl={12}>
           <Card className="custom-card">
@@ -81,7 +112,6 @@ const Tweets: FC<TweetsProps> = () => {
                         selected={startDate}
                         onChange={handleDateChange}
                         dateFormat="yyyy/MM/dd"
-                        
                       />
                     </InputGroup>
                   </div>
@@ -96,7 +126,6 @@ const Tweets: FC<TweetsProps> = () => {
                         selected={startDate1}
                         onChange={handleDateChange1}
                         dateFormat="yyyy/MM/dd"
-                        
                       />
                     </InputGroup>
                   </div>

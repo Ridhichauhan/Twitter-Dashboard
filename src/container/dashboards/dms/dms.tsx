@@ -1,4 +1,3 @@
-/*eslint linebreak-style: ["error", "windows"]*/
 import { Fragment, useEffect, useState } from "react";
 import { Card, Col, InputGroup,Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";

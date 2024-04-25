@@ -1,39 +1,50 @@
 export const MENUITEMS = [
   {
-    menutitle: "TWEETS DASHBOARD",
+    // menutitle: "All TWEETS DATA",
     Items: [
       {
-        icon: <i className="side-menu__icon bx bx-home"></i>,
-        type: "sub",
+        icon: <i className="bi bi-clipboard-data side-menu__icon mb-2"></i>,
+        type: "link",
+        Name: "",
+        active: false,
+        selected: false,
+        title: "All Data",
+        badge: "",
+        class: "badge bg-warning-transparent ms-2",
+        path: `${import.meta.env.BASE_URL}tweets/tweets`,
+      },
+    ],
+  },
+  {
+    // menutitle: "TWEETS",
+    Items: [
+      {
+        icon: <i className="bi bi-filter-square side-menu__icon mb-2"></i>,
+        type: "link",
         Name: "",
         active: false,
         selected: false,
         title: "Tweets",
         badge: "",
-        class: "badge bg-warning-transparent ms-2",
-        children: [
-          {
-            path: `${import.meta.env.BASE_URL}tweets/tweets`,
-            type: "link",
-            active: false,
-            selected: false,
-            title: "TWEETS",
-          },
-          {
-            path: `${import.meta.env.BASE_URL}tweet/tweet`,
-            type: "link",
-            active: false,
-            selected: false,
-            title: "TWEET",
-          },
-          {
-            path: `${import.meta.env.BASE_URL}alert/alert`,
-            type: "link",
-            active: false,
-            selected: false,
-            title: "ALERTS",
-          },
-        ],
+        class: " badge bg-warning-transparent ms-2",
+        path: `${import.meta.env.BASE_URL}tweet/tweet`,
+      },
+    ],
+  },
+
+  {
+    // menutitle: "ALERTS",
+    Items: [
+      {
+        icon: <i className="bi bi-exclamation-circle side-menu__icon mb-2"></i>,
+        type: "link",
+        Name: "",
+        active: false,
+        selected: false,
+        title: "Alerts",
+        badge: "",
+        class: " badge bg-warning-transparent ms-2",
+        path: `${import.meta.env.BASE_URL}alert/alert`,
       },
     ],
   },
