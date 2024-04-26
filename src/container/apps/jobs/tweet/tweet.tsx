@@ -11,7 +11,6 @@ import {
 } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import axios from "axios";
-// import { Link } from "react-router-dom";
 import Loader from "../../../../components/common/loader/loader";
 import twitter from "../../../../assets/images/media/twiiter.png";
 
@@ -31,7 +30,7 @@ const Tweet: FC<TweetProps> = () => {
   }, [page]);
   const handleDateChange = (date: Date | null) => {
     if (date) {
-      if (date < new Date("2024-04-23")) {
+      if (date < new Date("2024-04-22")) {
         setShowToast(true);
         return;
       }
@@ -41,7 +40,7 @@ const Tweet: FC<TweetProps> = () => {
   };
   const handleDateChange1 = (date: Date | null) => {
     if (date) {
-      if (date < new Date("2024-04-23")) {
+      if (date < new Date("2024-04-22")) {
         setShowToast(true);
         return;
       }
@@ -91,10 +90,7 @@ const Tweet: FC<TweetProps> = () => {
           id="topright-Toast"
           className="toast colored-toast bg-primary-transparent text-primary"
           onClose={() => setShowToast(false)}
-          show={showToast}
-          // delay={3000}
-          // autohide
-        >
+          show={showToast}>
           <Toast.Header className="toast-header bgColor text-fixed-white">
             <img
               className="bd-placeholder-img rounded me-2"

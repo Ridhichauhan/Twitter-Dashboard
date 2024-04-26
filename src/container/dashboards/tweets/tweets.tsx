@@ -26,7 +26,7 @@ const Tweets: FC<TweetsProps> = () => {
   }, []);
   const handleDateChange = (date: Date | null) => {
     if (date) {
-      if (date < new Date("2024-04-23")) {
+      if (date < new Date("2024-04-22")) {
         setShowToast(true);
         return;
       }
@@ -35,7 +35,7 @@ const Tweets: FC<TweetsProps> = () => {
   };
   const handleDateChange1 = (date: Date | null) => {
     if (date) {
-      if (date < new Date("2024-04-23")) {
+      if (date < new Date("2024-04-22")) {
         setShowToast(true);
         return;
       }
@@ -74,8 +74,6 @@ const Tweets: FC<TweetsProps> = () => {
           className="toast colored-toast bg-primary-transparent text-primary"
           onClose={() => setShowToast(false)}
           show={showToast}
-          // delay={3000}
-          // autohide
         >
           <Toast.Header className="toast-header bgColor text-fixed-white">
             <img

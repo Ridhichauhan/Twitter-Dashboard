@@ -1,6 +1,5 @@
 export const MENUITEMS = [
   {
-    // menutitle: "All TWEETS DATA",
     Items: [
       {
         icon: <i className="bi bi-clipboard-data side-menu__icon mb-2"></i>,
@@ -16,7 +15,6 @@ export const MENUITEMS = [
     ],
   },
   {
-    // menutitle: "TWEETS",
     Items: [
       {
         icon: <i className="bi bi-filter-square side-menu__icon mb-2"></i>,
@@ -31,9 +29,7 @@ export const MENUITEMS = [
       },
     ],
   },
-
   {
-    // menutitle: "ALERTS",
     Items: [
       {
         icon: <i className="bi bi-exclamation-circle side-menu__icon mb-2"></i>,
