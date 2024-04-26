@@ -29,6 +29,7 @@ const Tweet: FC<TweetProps> = () => {
     fetchData();
   }, [page]);
   const handleDateChange = (date: Date | null) => {
+    console.log("date", date);
     if (date) {
       if (date < new Date("2024-04-22")) {
         setShowToast(true);
@@ -39,6 +40,8 @@ const Tweet: FC<TweetProps> = () => {
     }
   };
   const handleDateChange1 = (date: Date | null) => {
+    console.log("date1", date);
+
     if (date) {
       if (date < new Date("2024-04-22")) {
         setShowToast(true);
@@ -49,18 +52,21 @@ const Tweet: FC<TweetProps> = () => {
     }
   };
   const fetchData = async () => {
-    const startUTC = new Date(startDate);
-    const endUTC = new Date(startDate1);
-    startUTC.setUTCHours(0, 0, 0, 0);
-    endUTC.setUTCHours(23, 59, 59, 999);
+    const startUTC = new Date(startDate).toISOString().slice(0, 16);
+    const endUTC = new Date(startDate1).toISOString().slice(0, 16);
+    console.log("startUTC", startUTC);
+    console.log("endUTC", endUTC);
+    // startUTC.setUTCHours(0, 0, 0, 0);
+    // endUTC.setUTCHours(23, 59, 59, 999);
+
     setLoader(true);
     try {
       const response = await axios.get(
         `https://loudfolder.com/getTweetsDetailsForDateRange?page=${page}`,
         {
           params: {
-            startDate: startDate.toISOString(),
-            endDate: startDate1.toUTCString(),
+            startDate: startUTC,
+            endDate: endUTC,
           },
           headers: {
             Authorization: authToken,
@@ -90,7 +96,8 @@ const Tweet: FC<TweetProps> = () => {
           id="topright-Toast"
           className="toast colored-toast bg-primary-transparent text-primary"
           onClose={() => setShowToast(false)}
-          show={showToast}>
+          show={showToast}
+        >
           <Toast.Header className="toast-header bgColor text-fixed-white">
             <img
               className="bd-placeholder-img rounded me-2"
