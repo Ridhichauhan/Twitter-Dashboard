@@ -16,7 +16,6 @@ const history: any = [];
 const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
   const location = useLocation();
   const [menuitems, setMenuitems] = useState<any>(MENUITEMS);
-
   useEffect(() => {
     history.push(location.pathname); // add  history to history  stack for current location.pathname to prevent multiple history calls innerWidth  and innerWidth  calls from  multiple users. This is important because the history stack is not always empty when the user clicks  the history
     if (history.length > 2) {
@@ -25,16 +24,11 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
     if (history[0] !== history[1]) {
     }
     const mainContent = document.querySelector(".main-content");
-    // console.log(local_varaiable);
-
-    //when we click on the body to remove
     mainContent!.addEventListener("click", mainContentClickFn);
     return () => {
       mainContent!.removeEventListener("click", mainContentClickFn);
     };
   }, [location, mainContentClickFn]);
-
-  // location
   useEffect(() => {
     if (
       document.body.classList.contains("horizontal") &&
@@ -43,7 +37,6 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
       clearMenuActive();
     }
   }, []);
-  //  In Horizontal When we click the body it should we Closed using in useEfffect Refer line No:16
   function mainContentClickFn() {
     if (
       document.body.classList.contains("horizontal") &&
@@ -52,7 +45,6 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
       clearMenuActive();
     }
   }
-
   function clearMenuActive() {
     MENUITEMS.filter((mainlevel) => {
       if (mainlevel.Items) {
@@ -77,10 +69,7 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
     });
     setMenuitems((arr: any) => [...arr]);
   }
-
   function toggleSidemenu(item: any) {
-    // console.log("Working 1");
-
     if (
       !document.body.classList.contains("horizontal-hover") ||
       window.innerWidth < 992
@@ -138,10 +127,8 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
         // item.active = !item.active;
       }
     }
-
     setMenuitems((arr: any) => [...arr]);
   }
-
   function Onhover() {
     const theme = store.getState();
     if (
@@ -206,7 +193,6 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
       }, 100);
     });
   }, []);
-
   function setSidemenu(list?: any) {
     let dd = list ? list.path + "/" : location.pathname;
     if (menuitems) {
@@ -284,7 +270,6 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
       // ThemeChanger({...local_varaiable,"toggled":"double-menu-open"})
     }
   }
-
   function switcherArrowFn(): void {
     // Used to remove is-expanded class and remove class on clicking arrow buttons
     function slideClick(): void {
@@ -307,7 +292,6 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 
     slideClick();
   }
-
   function slideRight(): void {
     const menuNav = document.querySelector<HTMLElement>(".main-menu");
     const mainContainer1 = document.querySelector<HTMLElement>(".main-sidebar");
@@ -403,7 +387,6 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 
     switcherArrowFn();
   }
-
   function slideLeft(): void {
     const menuNav = document.querySelector<HTMLElement>(".main-menu");
     const mainContainer1 = document.querySelector<HTMLElement>(".main-sidebar");
@@ -480,10 +463,8 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
       ThemeChanger({ ...theme, toggled: "double-menu-close" });
     }
   };
-
   const ulRef = useRef<any>(null);
   const ulElement = useRef(null);
-
   useEffect(() => {
     if (
       localStorage.ynexverticalstyles != "overlay" &&
@@ -492,7 +473,6 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
       setSidemenu();
     }
   }, []);
-
   const MenuOpen = (_event: any) => {
     // console.log("Working");
     const MainContent = document.querySelector(".main-content");
@@ -518,7 +498,6 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
       ThemeChanger({ ...theme, toggled: "double-menu-open" });
     }
   };
-
   return (
     <Fragment>
       <div id="responsive-overlay" onClick={() => menuClose()}></div>

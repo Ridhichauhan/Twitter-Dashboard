@@ -26,14 +26,45 @@
 .blueColor{
     color: #238ae6;
 }
-
-// .textColor{
-//   text-shadow: ;
-// }
 .react-datepicker__day--disabled {
     cursor: not-allowed !important;
-  }
-  
-  .react-datepicker__day--disabled:hover {
+}
+.react-datepicker__day--disabled:hover {
     background-color: transparent !important;
+}
+.date-picker-wrapper .react-datepicker {
+  &__day--selected {
+    background-color: #238ae6 !important; 
   }
+
+  &__day--keyboard-selected {
+    background-color: #238ae6 !important;
+  }
+
+  &__day:hover {
+    background-color: #238ae6 !important;
+  }
+}
+.date-picker-popper .react-datepicker {
+  &__day--selected {
+    background-color: #238ae6 !important; 
+  }
+
+  &__day--keyboard-selected {
+    background-color: #238ae6 !important;
+  }
+
+  &__day:hover {
+    background-color: #238ae6 !important; 
+  }
+}
+.pagination .page-link {
+  color: #000;
+}
+.pagination .page-link:hover {
+ color: #238ae6;
+}
+.pagination .page-item.disabled .page-link {
+  color: #ccc;
+}
+

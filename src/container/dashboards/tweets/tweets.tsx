@@ -110,6 +110,9 @@ const Tweets: FC<TweetsProps> = () => {
                         selected={startDate}
                         onChange={handleDateChange}
                         dateFormat="yyyy/MM/dd"
+                        className="blueColor"
+                        wrapperClassName="date-picker-wrapper"
+                        popperClassName="date-picker-popper"
                       />
                     </InputGroup>
                   </div>
@@ -124,6 +127,8 @@ const Tweets: FC<TweetsProps> = () => {
                         selected={startDate1}
                         onChange={handleDateChange1}
                         dateFormat="yyyy/MM/dd"
+                        wrapperClassName="date-picker-wrapper"
+                        popperClassName="date-picker-popper"
                       />
                     </InputGroup>
                   </div>

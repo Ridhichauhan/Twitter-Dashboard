@@ -134,7 +134,8 @@ const Tweet: FC<TweetProps> = () => {
                         onChange={handleDateChange}
                         dateFormat="yyyy/MM/dd h:mm aa"
                         showTimeInput
-                        className="form-control"
+                        wrapperClassName="date-picker-wrapper"
+                        popperClassName="date-picker-popper"
                       />
                     </InputGroup>
                   </div>
@@ -149,7 +150,8 @@ const Tweet: FC<TweetProps> = () => {
                         onChange={handleDateChange1}
                         showTimeInput
                         dateFormat="yyyy/MM/dd h:mm aa"
-                        className="form-control"
+                        wrapperClassName="date-picker-wrapper"
+                        popperClassName="date-picker-popper"
                       />
                     </InputGroup>
                   </div>
@@ -187,11 +189,14 @@ const Tweet: FC<TweetProps> = () => {
                           <th scope="col">Acknowledgment</th>
                         </tr>
                       </thead>
-                      {tweets?.map((item: any, index: number) => (
-                        <tbody key={index + (page - 1) * 10}>
-                          <tr>
-                            <th scope="row">{index + 1 + (page - 1) * 10}.</th>
-                            {/* <td>
+                      {tweets.length > 0 && (
+                        <tbody>
+                          {tweets?.map((item: any, index: number) => (
+                            <tr key={index + (page - 1) * 10}>
+                              <th scope="row">
+                                {index + 1 + (page - 1) * 10}.
+                              </th>
+                              {/* <td>
                               <span className="badge bg-light fs-13 text-dark">
                                 <Link
                                   className="blueColor fw-semibold text-break"
@@ -202,68 +207,74 @@ const Tweet: FC<TweetProps> = () => {
                                 </Link>
                               </span>
                             </td> */}
-                            <td>
-                              <div className="d-flex align-items-center">
-                                {item.tweetId}
-                              </div>
-                            </td>
-                            <td>
-                              <div className="d-flex align-items-center">
-                                {new Date(item.receivedTime).toLocaleString(
-                                  "en-IN",
-                                  {
-                                    timeZone: "Asia/Kolkata",
-                                    hour12: true,
-                                  }
-                                )}
-                              </div>
-                            </td>
-                            <td>
-                              <div className="d-flex align-items-center">
-                                {item?.sentToSMGT === true ? "yes" : "failed"}
-                              </div>
-                            </td>
-                            <td>
-                              <div className="d-flex align-items-center">
-                                {item.acknowledgement}
-                              </div>
-                            </td>
-                          </tr>
+                              <td>
+                                <div className="d-flex align-items-center">
+                                  {item.tweetId}
+                                </div>
+                              </td>
+                              <td>
+                                <div className="d-flex align-items-center">
+                                  {new Date(item.receivedTime).toLocaleString(
+                                    "en-IN",
+                                    {
+                                      timeZone: "Asia/Kolkata",
+                                      hour12: true,
+                                    }
+                                  )}
+                                </div>
+                              </td>
+                              <td>
+                                <div className="d-flex align-items-center">
+                                  {item?.sentToSMGT === true ? "yes" : "failed"}
+                                </div>
+                              </td>
+                              <td>
+                                <div className="d-flex align-items-center">
+                                  {item.acknowledgement}
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
                         </tbody>
-                      ))}
+                      )}
                     </Table>
                   </div>
                 </Card.Body>
               </Card>
-              <Card.Body className="d-flex justify-content-end card-body d-flex flex-wrap">
-                <nav aria-label="..." className="me-3">
-                  <Pagination className="pagination">
-                    <Pagination.Item
-                      onClick={() => {
-                        setPage(page - 1);
-                      }}
-                      disabled={page === 1}
-                    >
-                      Previous
-                    </Pagination.Item>
-                    <div
-                      aria-current="page"
-                      className="p-2 text-white"
-                      style={{ background: "#238ae6" }}
-                    >
-                      {page}
-                    </div>
-                    <Pagination.Item
-                      href="#"
-                      onClick={() => {
-                        setPage(page + 1);
-                      }}
-                    >
-                      Next
-                    </Pagination.Item>
-                  </Pagination>
-                </nav>
-              </Card.Body>
+              {tweets.length > 0 && (
+                <Card.Body className="d-flex justify-content-end card-body d-flex flex-wrap">
+                  <nav aria-label="..." className="me-3">
+                    <Pagination className="pagination">
+                      <Pagination.Item
+                        onClick={() => {
+                          setPage(page - 1);
+                        }}
+                        disabled={page === 1}
+                        className="pagination"
+                      >
+                        Previous
+                      </Pagination.Item>
+                      <div
+                        aria-current="page"
+                        className="p-2 text-white"
+                        style={{ background: "#238ae6" }}
+                      >
+                        {page}
+                      </div>
+                      <div
+                        // href={#}
+                        onClick={() => {
+                          setPage(page + 1);
+                        }}
+                        className="p-2 bg-white rounded-2 fw-semibold"
+                        style={{ color: "#238ae6" }}
+                      >
+                        Next
+                      </div>
+                    </Pagination>
+                  </nav>
+                </Card.Body>
+              )}
             </>
           )}
         </Col>
