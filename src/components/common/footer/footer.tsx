@@ -7,7 +7,7 @@ const Footer: FC<FooterProps> = () => {
     <Fragment>
       <footer className="footer mt-auto py-3 bg-white text-center">
         <div className="container">
-          <span className="text-muted"> Tweets Dashboard</span>
+          <span className="text-muted"> Twitter Dashboard</span>
         </div>
       </footer>
     </Fragment>
