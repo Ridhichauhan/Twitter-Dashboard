@@ -14,6 +14,7 @@ import twitter from "../../../assets/images/media/twiiter.png";
 
 interface TweetsProps {}
 const Tweets: FC<TweetsProps> = () => {
+    
   const [startDate, setStartDate] = useState(new Date());
   const [startDate1, setStartDate1] = useState(new Date());
   const [tweets, setTweets] = useState<any[]>([]);
@@ -68,7 +69,7 @@ const Tweets: FC<TweetsProps> = () => {
   };
   return (
     <Fragment>
-      <ToastContainer className="toast-container position-fixed top-0 end-0 p-3">
+      <ToastContainer className="toast-container position-fixed top-0 end-0 p-3" >
         <Toast
           id="topright-Toast"
           className="toast colored-toast bg-primary-transparent text-primary"
@@ -171,7 +172,7 @@ const Tweets: FC<TweetsProps> = () => {
                   </Card.Body>
                 </Card>
               </Col>
-              <Col xxl={3}>
+              {/* <Col xxl={3}>
                 <Card className="custom-card">
                   <Card.Header className="align-items-center">
                     <div className="flex-fill">
@@ -190,8 +191,8 @@ const Tweets: FC<TweetsProps> = () => {
                     <p className="text-muted mb-3">Time Stamp Data</p>
                   </Card.Body>
                 </Card>
-              </Col>
-              <Col xxl={3}>
+              </Col> */}
+              {/* <Col xxl={3}>
                 <Card className="custom-card">
                   <Card.Header className="align-items-center">
                     <div className="flex-fill">
@@ -210,7 +211,7 @@ const Tweets: FC<TweetsProps> = () => {
                     <p className="text-muted mb-3">Time Stamp Data</p>
                   </Card.Body>
                 </Card>
-              </Col>
+              </Col> */}
               <Col xxl={3}>
                 <Card className="custom-card">
                   <Card.Header className="align-items-center">

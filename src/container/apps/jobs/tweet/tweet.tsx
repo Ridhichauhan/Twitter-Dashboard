@@ -250,7 +250,7 @@ const Tweet: FC<TweetProps> = () => {
                           setPage(page - 1);
                         }}
                         disabled={page === 1}
-                        className="pagination"
+                        className="pagination fw-semibold fs-13"
                       >
                         Previous
                       </Pagination.Item>
@@ -266,7 +266,7 @@ const Tweet: FC<TweetProps> = () => {
                         onClick={() => {
                           setPage(page + 1);
                         }}
-                        className="p-2 bg-white rounded-2 fw-semibold"
+                        className="p-2 bg-white rounded-2 fw-semibold fs-13"
                         style={{ color: "#238ae6" }}
                       >
                         Next
